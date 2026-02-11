@@ -174,6 +174,16 @@
                 transform: scale(1.1);
             }
         }
+
+        /* Hide Scrollbar Utility */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 
@@ -843,111 +853,248 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal-element">
                 <h2 class="text-3xl font-bold text-gray-900 font-poppins">Jejak Langkah Kami</h2>
-                <p class="text-gray-500 mt-2">Dokumentasi Bhakti Nusantara 1-6</p>
+                <p class="text-gray-500 mt-2">Dokumentasi Bhakti Nusantara 1-9</p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Project 1 -->
-                <div
-                    class="reveal-element group relative overflow-hidden rounded-2xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500">
-                    <img src="asset/pangandaran1.JPG"
-                        class="w-full h-64 object-cover group-hover:scale-110 transition duration-700" alt="Pangandaran"
-                        onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop';">
+            <!-- Project Slider Container -->
+            <div class="relative group max-w-full">
+
+                <!-- Left Button -->
+                <button onclick="scrollProjects(-1)"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0 focus:outline-none">
+                    <i class="fa-solid fa-chevron-left text-xl"></i>
+                </button>
+
+                <!-- Slider -->
+                <div id="project-slider"
+                    class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar px-4 py-8 items-center">
+
+                    <!-- Project 1 -->
                     <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 opacity-90 group-hover:opacity-100 transition-opacity">
+                        class="min-w-[280px] md:min-w-[350px] snap-center reveal-element group/card relative overflow-hidden rounded-3xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500 h-[350px] md:h-[400px]">
+                        <img src="asset/pangandaran1.JPG"
+                            class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700"
+                            alt="Pangandaran"
+                            onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop';">
                         <div
-                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <p class="text-custom-red-400 text-xs font-bold uppercase mb-1">Bhakti Nusantara 1</p>
-                            <h3 class="text-white font-bold text-lg">Pangandaran & P. Sabira</h3>
-                            <p class="text-gray-300 text-xs mt-1">Jawa Barat & DKI Jakarta</p>
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 opacity-90 group-hover/card:opacity-100 transition-opacity">
+                            <div
+                                class="transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-300">
+                                <p class="text-custom-red-400 text-sm font-bold uppercase mb-2">Bhakti Nusantara 1</p>
+                                <h3 class="text-white font-bold text-xl mb-1">Pangandaran </h3>
+                                <p class="text-gray-300 text-xs">Jawa Barat </p>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Project 2 -->
+                    <div
+                        class="min-w-[280px] md:min-w-[350px] snap-center reveal-element delay-100 group/card relative overflow-hidden rounded-3xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500 h-[350px] md:h-[400px]">
+                        <img src="asset/dompu dan bintan.jpg"
+                            class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700"
+                            alt="Dompu"
+                            onerror="this.src='https://images.unsplash.com/photo-1559160581-44bd4b56c429?q=80&w=1974&auto=format&fit=crop';">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 opacity-90 group-hover/card:opacity-100 transition-opacity">
+                            <div
+                                class="transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-300">
+                                <p class="text-custom-red-400 text-sm font-bold uppercase mb-2">Bhakti Nusantara 2</p>
+                                <h3 class="text-white font-bold text-xl mb-1">Dompu </h3>
+                                <p class="text-gray-300 text-xs">Nusa Tenggara Barat</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div
+                        class="min-w-[280px] md:min-w-[350px] snap-center reveal-element delay-200 group/card relative overflow-hidden rounded-3xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500 h-[350px] md:h-[400px]">
+                        <img src="asset/bn 3 natuna (1).jpg"
+                            class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700"
+                            alt="Bali"
+                            onerror="this.src='https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=2038&auto=format&fit=crop';">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 opacity-90 group-hover/card:opacity-100 transition-opacity">
+                            <div
+                                class="transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-300">
+                                <p class="text-custom-red-400 text-sm font-bold uppercase mb-2">Bhakti Nusantara 3</p>
+                                <h3 class="text-white font-bold text-xl mb-1">Jimbaran & Natuna</h3>
+                                <p class="text-gray-300 text-xs">Kepulauan Riau</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div
+                        class="min-w-[280px] md:min-w-[350px] snap-center reveal-element group/card relative overflow-hidden rounded-3xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500 h-[350px] md:h-[400px]">
+                        <img src="asset/bn 4 bima.jpg"
+                            class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700"
+                            alt="Bima"
+                            onerror="this.src='https://images.unsplash.com/photo-1544422204-7a660d5b4a04?q=80&w=2070&auto=format&fit=crop';">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 opacity-90 group-hover/card:opacity-100 transition-opacity">
+                            <div
+                                class="transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-300">
+                                <p class="text-custom-red-400 text-sm font-bold uppercase mb-2">Bhakti Nusantara 4</p>
+                                <h3 class="text-white font-bold text-xl mb-1">Bima </h3>
+                                <p class="text-gray-300 text-xs">Nusa Tenggara Barat</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div
+                        class="min-w-[280px] md:min-w-[350px] snap-center reveal-element delay-100 group/card relative overflow-hidden rounded-3xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500 h-[350px] md:h-[400px]">
+                        <img src="asset/bn 5 karimun.jpg"
+                            class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700"
+                            alt="Karimunjawa"
+                            onerror="this.src='https://images.unsplash.com/photo-1628583272922-86938cb270f2?q=80&w=2070&auto=format&fit=crop';">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 opacity-90 group-hover/card:opacity-100 transition-opacity">
+                            <div
+                                class="transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-300">
+                                <p class="text-custom-red-400 text-sm font-bold uppercase mb-2">Bhakti Nusantara 5</p>
+                                <h3 class="text-white font-bold text-xl mb-1">Karimunjawa</h3>
+                                <p class="text-gray-300 text-xs">Jawa Tengah</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div
+                        class="min-w-[280px] md:min-w-[350px] snap-center reveal-element delay-200 group/card relative overflow-hidden rounded-3xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500 h-[350px] md:h-[400px]">
+                        <img src="asset/bn 6 sumbawa (1).jpg"
+                            class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700"
+                            alt="Sumbawa"
+                            onerror="this.src='https://images.unsplash.com/photo-1540306385317-06df4c748c03?q=80&w=2070&auto=format&fit=crop';">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 opacity-90 group-hover/card:opacity-100 transition-opacity">
+                            <div
+                                class="transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-300">
+                                <p class="text-custom-red-400 text-sm font-bold uppercase mb-2">Bhakti Nusantara 6</p>
+                                <h3 class="text-white font-bold text-xl mb-1">Sumbawa</h3>
+                                <p class="text-gray-300 text-xs">Nusa Tenggara Barat</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 7 -->
+                    <div
+                        class="min-w-[280px] md:min-w-[350px] snap-center reveal-element group/card relative overflow-hidden rounded-3xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500 h-[350px] md:h-[400px]">
+                        <img src="asset/bn 1 sabira (1).jpg"
+                            class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700"
+                            alt="Project 7"
+                            onerror="this.src='https://images.unsplash.com/photo-1540306385317-06df4c748c03?q=80&w=2070&auto=format&fit=crop';">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 opacity-90 group-hover/card:opacity-100 transition-opacity">
+                            <div
+                                class="transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-300">
+                                <p class="text-custom-red-400 text-sm font-bold uppercase mb-2">Bhakti Nusantara 7</p>
+                                <h3 class="text-white font-bold text-xl mb-1">Pulau Sabira</h3>
+                                <p class="text-gray-300 text-xs">Lokasi Segera Hadir</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 8 -->
+                    <div
+                        class="min-w-[280px] md:min-w-[350px] snap-center reveal-element delay-100 group/card relative overflow-hidden rounded-3xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500 h-[350px] md:h-[400px]">
+                        <img src="asset/bn 3 bali (1).jpeg"
+                            class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700"
+                            alt="Project 8"
+                            onerror="this.src='https://images.unsplash.com/photo-1540306385317-06df4c748c03?q=80&w=2070&auto=format&fit=crop';">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 opacity-90 group-hover/card:opacity-100 transition-opacity">
+                            <div
+                                class="transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-300">
+                                <p class="text-custom-red-400 text-sm font-bold uppercase mb-2">Bhakti Nusantara 8</p>
+                                <h3 class="text-white font-bold text-xl mb-1">Bali</h3>
+                                <p class="text-gray-300 text-xs">Lokasi Segera Hadir</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 9 -->
+                    <div
+                        class="min-w-[280px] md:min-w-[350px] snap-center reveal-element delay-200 group/card relative overflow-hidden rounded-3xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500 h-[350px] md:h-[400px]">
+                        <img src="asset/bn 8 bwi.jpg"
+                            class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700"
+                            alt="Project 9"
+                            onerror="this.src='https://images.unsplash.com/photo-1540306385317-06df4c748c03?q=80&w=2070&auto=format&fit=crop';">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 opacity-90 group-hover/card:opacity-100 transition-opacity">
+                            <div
+                                class="transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-300">
+                                <p class="text-custom-red-400 text-sm font-bold uppercase mb-2">Bhakti Nusantara 9</p>
+                                <h3 class="text-white font-bold text-xl mb-1">Banyuwangi</h3>
+                                <p class="text-gray-300 text-xs">Lokasi Segera Hadir</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 10 -->
+                    <div
+                        class="min-w-[280px] md:min-w-[350px] snap-center reveal-element group/card relative overflow-hidden rounded-3xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500 h-[350px] md:h-[400px]">
+                        <img src="asset/bn 2 bintan (1).jpg"
+                            class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700"
+                            alt="Project 10"
+                            onerror="this.src='https://images.unsplash.com/photo-1540306385317-06df4c748c03?q=80&w=2070&auto=format&fit=crop';">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 opacity-90 group-hover/card:opacity-100 transition-opacity">
+                            <div
+                                class="transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-300">
+                                <p class="text-custom-red-400 text-sm font-bold uppercase mb-2">Bhakti Nusantara 10</p>
+                                <h3 class="text-white font-bold text-xl mb-1">Bintan</h3>
+                                <p class="text-gray-300 text-xs">Kepulauan Riau</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 11 -->
+                    <div
+                        class="min-w-[280px] md:min-w-[350px] snap-center reveal-element delay-100 group/card relative overflow-hidden rounded-3xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500 h-[350px] md:h-[400px]">
+                        <img src="asset/bn 4 bangka (1).jpg"
+                            class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700"
+                            alt="Project 11"
+                            onerror="this.src='https://images.unsplash.com/photo-1540306385317-06df4c748c03?q=80&w=2070&auto=format&fit=crop';">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 opacity-90 group-hover/card:opacity-100 transition-opacity">
+                            <div
+                                class="transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-300">
+                                <p class="text-custom-red-400 text-sm font-bold uppercase mb-2">Bhakti Nusantara 11</p>
+                                <h3 class="text-white font-bold text-xl mb-1">Bangka Belitung
+                                </h3>
+                                <p class="text-gray-300 text-xs">Kepulauan Riau</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 12 -->
+                    <div
+                        class="min-w-[280px] md:min-w-[350px] snap-center reveal-element delay-200 group/card relative overflow-hidden rounded-3xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500 h-[350px] md:h-[400px]">
+                        <img src="asset/bn 7 pnd.jpg"
+                            class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700"
+                            alt="Project 12"
+                            onerror="this.src='https://images.unsplash.com/photo-1540306385317-06df4c748c03?q=80&w=2070&auto=format&fit=crop';">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 opacity-90 group-hover/card:opacity-100 transition-opacity">
+                            <div
+                                class="transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-300">
+                                <p class="text-custom-red-400 text-sm font-bold uppercase mb-2">Bhakti Nusantara 12</p>
+                                <h3 class="text-white font-bold text-xl mb-1">Pangandaran</h3>
+                                <p class="text-gray-300 text-xs">Jawa Barat</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-                <!-- Project 2 -->
-                <div
-                    class="reveal-element delay-100 group relative overflow-hidden rounded-2xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500">
-                    <img src="asset/dompu dan bintan.jpg"
-                        class="w-full h-64 object-cover group-hover:scale-110 transition duration-700" alt="Dompu"
-                        onerror="this.src='https://images.unsplash.com/photo-1559160581-44bd4b56c429?q=80&w=1974&auto=format&fit=crop';">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 opacity-90 group-hover:opacity-100 transition-opacity">
-                        <div
-                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <p class="text-custom-red-400 text-xs font-bold uppercase mb-1">Bhakti Nusantara 2</p>
-                            <h3 class="text-white font-bold text-lg">Dompu & Bintan</h3>
-                            <p class="text-gray-300 text-xs mt-1">NTB & Kepulauan Riau</p>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Project 3 -->
-                <div
-                    class="reveal-element delay-200 group relative overflow-hidden rounded-2xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500">
-                    <img src="asset/bn 3 natuna (1).jpg"
-                        class="w-full h-64 object-cover group-hover:scale-110 transition duration-700" alt="Bali"
-                        onerror="this.src='https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=2038&auto=format&fit=crop';">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 opacity-90 group-hover:opacity-100 transition-opacity">
-                        <div
-                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <p class="text-custom-red-400 text-xs font-bold uppercase mb-1">Bhakti Nusantara 3</p>
-                            <h3 class="text-white font-bold text-lg">Jimbaran & Natuna</h3>
-                            <p class="text-gray-300 text-xs mt-1">Bali & Kepulauan Riau</p>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Project 4 -->
-                <div
-                    class="reveal-element group relative overflow-hidden rounded-2xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500">
-                    <img src="asset/bn 4 bima.jpg"
-                        class="w-full h-64 object-cover group-hover:scale-110 transition duration-700" alt="Bima"
-                        onerror="this.src='https://images.unsplash.com/photo-1544422204-7a660d5b4a04?q=80&w=2070&auto=format&fit=crop';">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 opacity-90 group-hover:opacity-100 transition-opacity">
-                        <div
-                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <p class="text-custom-red-400 text-xs font-bold uppercase mb-1">Bhakti Nusantara 4</p>
-                            <h3 class="text-white font-bold text-lg">Bima & Bangka Belitung</h3>
-                            <p class="text-gray-300 text-xs mt-1">NTB & Babel</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div
-                    class="reveal-element delay-100 group relative overflow-hidden rounded-2xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500">
-                    <img src="asset/bn 5 karimun.jpg"
-                        class="w-full h-64 object-cover group-hover:scale-110 transition duration-700" alt="Karimunjawa"
-                        onerror="this.src='https://images.unsplash.com/photo-1628583272922-86938cb270f2?q=80&w=2070&auto=format&fit=crop';">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 opacity-90 group-hover:opacity-100 transition-opacity">
-                        <div
-                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <p class="text-custom-red-400 text-xs font-bold uppercase mb-1">Bhakti Nusantara 5</p>
-                            <h3 class="text-white font-bold text-lg">Karimunjawa</h3>
-                            <p class="text-gray-300 text-xs mt-1">Jawa Tengah</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div
-                    class="reveal-element delay-200 group relative overflow-hidden rounded-2xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500">
-                    <img src="asset/bn 6 sumbawa (1).jpg"
-                        class="w-full h-64 object-cover group-hover:scale-110 transition duration-700" alt="Sumbawa"
-                        onerror="this.src='https://images.unsplash.com/photo-1540306385317-06df4c748c03?q=80&w=2070&auto=format&fit=crop';">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 opacity-90 group-hover:opacity-100 transition-opacity">
-                        <div
-                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <p class="text-custom-red-400 text-xs font-bold uppercase mb-1">Bhakti Nusantara 6</p>
-                            <h3 class="text-white font-bold text-lg">Sumbawa</h3>
-                            <p class="text-gray-300 text-xs mt-1">Nusa Tenggara Barat</p>
-                        </div>
-                    </div>
-                </div>
+                <!-- Right Button -->
+                <button onclick="scrollProjects(1)"
+                    class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0 focus:outline-none">
+                    <i class="fa-solid fa-chevron-right text-xl"></i>
+                </button>
             </div>
 
             <div class="mt-12 text-center reveal-element">
@@ -1236,6 +1383,60 @@
         }, { threshold: 0.5 });
 
         counters.forEach(counter => counterObserver.observe(counter));
+
+        // 3. Project Slider Logic
+
+        const sliderContainer = document.getElementById('project-slider');
+
+        function getScrollAmount() {
+            // Dynamically calculate based on the first item width + gap (24px)
+            const firstCard = sliderContainer.querySelector('.group\\/card');
+            return firstCard ? firstCard.offsetWidth + 24 : 350 + 24;
+        }
+
+        function scrollProjects(direction) {
+            sliderContainer.scrollBy({
+                left: direction * getScrollAmount(),
+                behavior: 'smooth'
+            });
+            resetAutoSlide();
+        }
+
+        // Auto Slide Logic
+        let autoSlideInterval;
+
+        function startAutoSlide() {
+            if (autoSlideInterval) clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(() => {
+                const scrollAmount = getScrollAmount();
+                // Check if reached end
+                if (sliderContainer.scrollLeft + sliderContainer.clientWidth >= sliderContainer.scrollWidth - 10) {
+                    sliderContainer.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    sliderContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }, 3000); // Slide every 3 seconds
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+        // Start auto slide on load
+        startAutoSlide();
+
+        // Pause on Mouse Hover (Desktop)
+        sliderContainer.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+        sliderContainer.addEventListener('mouseleave', startAutoSlide);
+
+        // Pause on Touch (Mobile)
+        sliderContainer.addEventListener('touchstart', () => clearInterval(autoSlideInterval), { passive: true });
+        sliderContainer.addEventListener('touchend', () => {
+            // Small delay to allow potential scroll momentum to settle? 
+            // Or just restart immediately. Let's restart immediately but debounced slightly.
+            setTimeout(startAutoSlide, 2000);
+        }, { passive: true });
 
     </script>
 </body>
