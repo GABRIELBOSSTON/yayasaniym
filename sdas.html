@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUANTUM UNIVERSE - Mathematical 3D Masterpiece</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            background: #000;
+            font-family: 'Courier New', monospace;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        /* ================= HUD SYSTEM ================= */
+        .hud {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: #0ff;
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border: 1px solid #0ff;
+            border-radius: 5px;
+            z-index: 1000;
+            min-width: 250px;
+        }
+
+        .hud-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #0f0;
+            text-shadow: 0 0 10px #0f0;
+        }
+
+        .hud-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+
+        .hud-value {
+            color: #f0f;
+            font-weight: bold;
+        }
+
+        .controls-panel {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            color: #0ff;
+            font-size: 11px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border: 1px solid #0ff;
+            border-radius: 5px;
+            z-index: 1000;
+            max-width: 300px;
+        }
+
+        .controls-title {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #f0f;
+        }
+
+        .control-item {
+            margin: 3px 0;
+        }
+
+        .key {
+            display: inline-block;
+            background: #0ff;
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .math-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: #ff0;
+            font-size: 11px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            border: 1px solid #ff0;
+            border-radius: 5px;
+            z-index: 1000;
+            max-width: 350px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .math-title {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #0f0;
+        }
+
+        .equation {
+            margin: 8px 0;
+            padding: 5px;
+            background: rgba(0, 255, 0, 0.1);
+            border-left: 2px solid #0f0;
+        }
+
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: #0ff;
+        }
+
+        .loader.hidden {
+            display: none;
+        }
+
+        .loader-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .progress-bar {
+            width: 300px;
+            height: 4px;
+            background: #333;
+            border: 1px solid #0ff;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #0ff;
+            width: 0%;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-text">INITIALIZING QUANTUM UNIVERSE...</div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+    </div>
+
+    <!-- HUD -->
+    <div class="hud">
+        <div class="hud-title">⚛️ QUANTUM METRICS</div>
+        <div class="hud-item">
+            <span>FPS:</span>
+            <span class="hud-value" id="fps">60</span>
+        </div>
+        <div class="hud-item">
+            <span>Particles:</span>
+            <span class="hud-value" id="particles">0</span>
+        </div>
+        <div class="hud-item">
+            <span>Vector Fields:</span>
+            <span class="hud-value" id="fields">0</span>
+        </div>
+        <div class="hud-item">
+            <span>Gravity Wells:</span>
+            <span class="hud-value" id="wells">0</span>
+        </div>
+        <div class="hud-item">
+            <span>Time Dilation:</span>
+            <span class="hud-value" id="time-scale">1.0x</span>
+        </div>
+        <div class="hud-item">
+            <span>Camera Mode:</span>
+            <span class="hud-value" id="cam-mode">Orbit</span>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls-panel">
+        <div class="controls-title">🎮 CONTROLS</div>
+        <div class="control-item"><span class="key">MOUSE</span> Rotate Camera</div>
+        <div class="control-item"><span class="key">SCROLL</span> Zoom In/Out</div>
+        <div class="control-item"><span class="key">SPACE</span> Toggle Vector Field</div>
+        <div class="control-item"><span class="key">G</span> Add Gravity Well</div>
+        <div class="control-item"><span class="key">V</span> Add Vortex</div>
+        <div class="control-item"><span class="key">W</span> Add Wave Emitter</div>
+        <div class="control-item"><span class="key">F</span> Toggle Fractal Tree</div>
+        <div class="control-item"><span class="key">1-5</span> Time Scale</div>
+        <div class="control-item"><span class="key">C</span> Camera Mode</div>
+        <div class="control-item"><span class="key">R</span> Reset Universe</div>
+    </div>
+
+    <!-- Math Display -->
+    <div class="math-display">
+        <div class="math-title">📐 ACTIVE MATHEMATICS</div>
+        <div id="math-equations"></div>
+    </div>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        console.log('🌌 Quantum Universe Initializing...');
+
+        // ==================== MATHEMATICAL CONSTANTS ====================
+        const MATH = {
+            PHI: (1 + Math.sqrt(5)) / 2, // Golden ratio
+            TAU: Math.PI * 2,
+            PLANCK: 6.62607015e-34,
+            GRAVITY: 6.674e-11
+        };
+
+        // ==================== VECTOR MATHEMATICS CLASS ====================
+        class VectorField {
+            constructor(strength = 1.0, type = 'radial') {
+                this.strength = strength;
+                this.type = type; // radial, vortex, wave, sine
+                this.center = new THREE.Vector3();
+                this.time = 0;
+            }
+
+            // Calculate force at position using vector mathematics
+            getForceAt(position) {
+                const force = new THREE.Vector3();
+                const offset = position.clone().sub(this.center);
+                const distance = offset.length();
+
+                if (distance < 0.1) return force;
+
+                switch (this.type) {
+                    case 'radial':
+                        // F = -k * r (Hooke's law)
+                        force.copy(offset).normalize().multiplyScalar(-this.strength / (distance * distance));
+                        break;
+
+                    case 'vortex':
+                        // Cross product for perpendicular force
+                        const axis = new THREE.Vector3(0, 1, 0);
+                        force.crossVectors(axis, offset).normalize().multiplyScalar(this.strength / distance);
+                        break;
+
+                    case 'wave':
+                        // Sine wave propagation
+                        const freq = 2.0;
+                        const amplitude = this.strength;
+                        const wavePhase = Math.sin(distance * freq - this.time);
+                        force.copy(offset).normalize().multiplyScalar(wavePhase * amplitude);
+                        break;
+
+                    case 'turbulence':
+                        // Perlin-like noise using sine combinations
+                        const nx = Math.sin(position.x * 0.5 + this.time) * Math.cos(position.z * 0.3);
+                        const ny = Math.cos(position.y * 0.4 + this.time * 1.5);
+                        const nz = Math.sin(position.z * 0.6 + this.time * 0.8) * Math.cos(position.x * 0.4);
+                        force.set(nx, ny, nz).multiplyScalar(this.strength);
+                        break;
+                }
+
+                return force;
+            }
+
+            update(deltaTime) {
+                this.time += deltaTime;
+            }
+        }
+
+        // ==================== QUATERNION ROTATION CLASS ====================
+        class QuaternionRotator {
+            constructor() {
+                this.quaternion = new THREE.Quaternion();
+                this.axis = new THREE.Vector3(0, 1, 0);
+                this.angle = 0;
+            }
+
+            // Smooth rotation using SLERP (Spherical Linear Interpolation)
+            slerp(targetQuaternion, alpha) {
+                this.quaternion.slerp(targetQuaternion, alpha);
+            }
+
+            // Rotate around arbitrary axis (no gimbal lock!)
+            rotateAroundAxis(axis, angle) {
+                const quaternion = new THREE.Quaternion();
+                quaternion.setFromAxisAngle(axis.normalize(), angle);
+                this.quaternion.multiply(quaternion);
+            }
+
+            // Get Euler angles (for display only, not for actual rotation)
+            getEulerAngles() {
+                const euler = new THREE.Euler().setFromQuaternion(this.quaternion);
+                return {
+                    x: THREE.MathUtils.radToDeg(euler.x),
+                    y: THREE.MathUtils.radToDeg(euler.y),
+                    z: THREE.MathUtils.radToDeg(euler.z)
+                };
+            }
+        }
+
+        // ==================== PARTICLE PHYSICS CLASS ====================
+        class QuantumParticle {
+            constructor(position) {
+                this.position = position.clone();
+                this.velocity = new THREE.Vector3(
+                    (Math.random() - 0.5) * 0.1,
+                    (Math.random() - 0.5) * 0.1,
+                    (Math.random() - 0.5) * 0.1
+                );
+                this.acceleration = new THREE.Vector3();
+                this.mass = Math.random() * 0.5 + 0.5;
+                this.charge = Math.random() > 0.5 ? 1 : -1;
+                this.lifespan = 1.0;
+                this.age = 0;
+                this.color = new THREE.Color().setHSL(Math.random(), 1, 0.5);
+            }
+
+            // Apply force using F = ma
+            applyForce(force) {
+                const f = force.clone().divideScalar(this.mass);
+                this.acceleration.add(f);
+            }
+
+            // Velocity Verlet integration (more stable than Euler)
+            update(deltaTime) {
+                // v(t + dt) = v(t) + a(t) * dt
+                this.velocity.add(this.acceleration.clone().multiplyScalar(deltaTime));
+                
+                // p(t + dt) = p(t) + v(t) * dt
+                this.position.add(this.velocity.clone().multiplyScalar(deltaTime));
+                
+                // Reset acceleration
+                this.acceleration.set(0, 0, 0);
+                
+                // Age
+                this.age += deltaTime;
+                this.lifespan = Math.max(0, 1 - this.age * 0.1);
+
+                // Friction
+                this.velocity.multiplyScalar(0.99);
+            }
+
+            isDead() {
+                return this.lifespan <= 0;
+            }
+        }
+
+        // ==================== PROCEDURAL MESH GENERATOR ====================
+        class ProceduralMesh {
+            static createIcosphere(radius, detail) {
+                const geometry = new THREE.IcosahedronGeometry(radius, detail);
+                
+                // Apply noise to vertices for organic look
+                const positions = geometry.attributes.position.array;
+                for (let i = 0; i < positions.length; i += 3) {
+                    const vertex = new THREE.Vector3(
+                        positions[i],
+                        positions[i + 1],
+                        positions[i + 2]
+                    );
+                    
+                    // Perlin-like noise
+                    const noise = Math.sin(vertex.x * 2) * Math.cos(vertex.y * 3) * Math.sin(vertex.z * 2);
+                    const offset = noise * 0.2;
+                    
+                    vertex.normalize().multiplyScalar(radius + offset);
+                    
+                    positions[i] = vertex.x;
+                    positions[i + 1] = vertex.y;
+                    positions[i + 2] = vertex.z;
+                }
+                
+                geometry.computeVertexNormals();
+                return geometry;
+            }
+
+            static createParametricSurface(uSegments, vSegments) {
+                const geometry = new THREE.BufferGeometry();
+                const positions = [];
+                const colors = [];
+
+                for (let u = 0; u <= uSegments; u++) {
+                    for (let v = 0; v <= vSegments; v++) {
+                        const uNorm = u / uSegments;
+                        const vNorm = v / vSegments;
+
+                        // Parametric equations (Möbius strip-like)
+                        const theta = uNorm * MATH.TAU;
+                        const phi = vNorm * Math.PI;
+                        
+                        const x = (2 + phi * Math.cos(theta / 2)) * Math.cos(theta);
+                        const y = phi * Math.sin(theta / 2);
+                        const z = (2 + phi * Math.cos(theta / 2)) * Math.sin(theta);
+
+                        positions.push(x, y, z);
+
+                        // Color based on position
+                        const color = new THREE.Color().setHSL(uNorm, 1, 0.5);
+                        colors.push(color.r, color.g, color.b);
+                    }
+                }
+
+                geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+                geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+                geometry.computeVertexNormals();
+
+                return geometry;
+            }
+        }
+
+        // ==================== L-SYSTEM FRACTAL GENERATOR ====================
+        class LSystem {
+            constructor(axiom, rules, angle, iterations) {
+                this.axiom = axiom;
+                this.rules = rules;
+                this.angle = angle;
+                this.iterations = iterations;
+                this.sentence = axiom;
+                
+                this.generate();
+            }
+
+            generate() {
+                for (let i = 0; i < this.iterations; i++) {
+                    let next = '';
+                    for (let char of this.sentence) {
+                        next += this.rules[char] || char;
+                    }
+                    this.sentence = next;
+                }
+            }
+
+            createGeometry(length, startPos) {
+                const points = [];
+                const stack = [];
+                
+                let position = startPos.clone();
+                let direction = new THREE.Vector3(0, 1, 0);
+                
+                for (let char of this.sentence) {
+                    switch (char) {
+                        case 'F':
+                            const newPos = position.clone().add(direction.clone().multiplyScalar(length));
+                            points.push(position.clone(), newPos.clone());
+                            position = newPos;
+                            break;
+                        
+                        case '+':
+                            // Rotate around Z axis
+                            direction.applyAxisAngle(new THREE.Vector3(0, 0, 1), this.angle);
+                            break;
+                        
+                        case '-':
+                            direction.applyAxisAngle(new THREE.Vector3(0, 0, 1), -this.angle);
+                            break;
+                        
+                        case '[':
+                            stack.push({
+                                position: position.clone(),
+                                direction: direction.clone()
+                            });
+                            break;
+                        
+                        case ']':
+                            if (stack.length > 0) {
+                                const state = stack.pop();
+                                position = state.position;
+                                direction = state.direction;
+                            }
+                            break;
+                    }
+                }
+
+                const geometry = new THREE.BufferGeometry().setFromPoints(points);
+                return geometry;
+            }
+        }
+
+        // ==================== MAIN SCENE SETUP ====================
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x000000);
+        scene.fog = new THREE.FogExp2(0x000000, 0.002);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 20, 50);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        document.body.appendChild(renderer.domElement);
+
+        // ==================== LIGHTING SYSTEM ====================
+        const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+        scene.add(ambientLight);
+
+        // Directional light with shadows
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(10, 20, 10);
+        directionalLight.castShadow = true;
+        directionalLight.shadow.mapSize.width = 2048;
+        directionalLight.shadow.mapSize.height = 2048;
+        scene.add(directionalLight);
+
+        // Point lights for dynamic lighting
+        const pointLights = [];
+        for (let i = 0; i < 5; i++) {
+            const color = new THREE.Color().setHSL(i / 5, 1, 0.5);
+            const light = new THREE.PointLight(color, 2, 50);
+            light.position.set(
+                (Math.random() - 0.5) * 50,
+                Math.random() * 20,
+                (Math.random() - 0.5) * 50
+            );
+            pointLights.push(light);
+            scene.add(light);
+        }
+
+        // ==================== PARTICLE SYSTEM ====================
+        const PARTICLE_COUNT = 10000;
+        const particles = [];
+        const particleGeometry = new THREE.BufferGeometry();
+        const particlePositions = new Float32Array(PARTICLE_COUNT * 3);
+        const particleColors = new Float32Array(PARTICLE_COUNT * 3);
+
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            const particle = new QuantumParticle(
+                new THREE.Vector3(
+                    (Math.random() - 0.5) * 100,
+                    (Math.random() - 0.5) * 100,
+                    (Math.random() - 0.5) * 100
+                )
+            );
+            particles.push(particle);
+        }
+
+        particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+        particleGeometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
+
+        const particleMaterial = new THREE.PointsMaterial({
+            size: 0.5,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particleSystem = new THREE.Points(particleGeometry, particleMaterial);
+        scene.add(particleSystem);
+
+        // ==================== VECTOR FIELDS ====================
+        const vectorFields = [];
+        const gravityWells = [];
+
+        // ==================== PROCEDURAL OBJECTS ====================
+        const proceduralObjects = [];
+
+        // Create central icosphere
+        const icosphereGeo = ProceduralMesh.createIcosphere(3, 2);
+        const icosphereMat = new THREE.MeshStandardMaterial({
+            color: 0x00ffff,
+            wireframe: true,
+            emissive: 0x00ffff,
+            emissiveIntensity: 0.2
+        });
+        const icosphere = new THREE.Mesh(icosphereGeo, icosphereMat);
+        scene.add(icosphere);
+        proceduralObjects.push(icosphere);
+
+        // Create parametric surface
+        const parametricGeo = ProceduralMesh.createParametricSurface(50, 50);
+        const parametricMat = new THREE.MeshStandardMaterial({
+            vertexColors: true,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.6
+        });
+        const parametricMesh = new THREE.Mesh(parametricGeo, parametricMat);
+        parametricMesh.position.set(15, 0, 0);
+        parametricMesh.scale.setScalar(2);
+        scene.add(parametricMesh);
+        proceduralObjects.push(parametricMesh);
+
+        // ==================== FRACTAL TREES ====================
+        let fractalTree = null;
+
+        function createFractalTree() {
+            if (fractalTree) {
+                scene.remove(fractalTree);
+            }
+
+            const lsystem = new LSystem(
+                'F',
+                { 'F': 'F[+F]F[-F]F' },
+                THREE.MathUtils.degToRad(25),
+                4
+            );
+
+            const geometry = lsystem.createGeometry(1, new THREE.Vector3(-15, -10, 0));
+            const material = new THREE.LineBasicMaterial({
+                color: 0x00ff00,
+                transparent: true,
+                opacity: 0.8
+            });
+
+            fractalTree = new THREE.LineSegments(geometry, material);
+            scene.add(fractalTree);
+        }
+
+        // ==================== CAMERA CONTROLS ====================
+        let cameraMode = 'orbit'; // orbit, follow, free
+        let cameraAngle = 0;
+        let cameraDistance = 50;
+        let cameraTarget = new THREE.Vector3(0, 0, 0);
+
+        const mouse = { x: 0, y: 0 };
+        let isDragging = false;
+
+        document.addEventListener('mousemove', (e) => {
+            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+            if (isDragging && cameraMode === 'free') {
+                cameraAngle += e.movementX * 0.01;
+                camera.position.y += e.movementY * 0.1;
+            }
+        });
+
+        document.addEventListener('mousedown', () => isDragging = true);
+        document.addEventListener('mouseup', () => isDragging = false);
+
+        document.addEventListener('wheel', (e) => {
+            cameraDistance += e.deltaY * 0.01;
+            cameraDistance = THREE.MathUtils.clamp(cameraDistance, 10, 100);
+        });
+
+        // ==================== KEYBOARD CONTROLS ====================
+        let timeScale = 1.0;
+        let showVectorField = false;
+
+        document.addEventListener('keydown', (e) => {
+            switch(e.key.toLowerCase()) {
+                case ' ':
+                    showVectorField = !showVectorField;
+                    break;
+
+                case 'g':
+                    // Add gravity well
+                    const well = new VectorField(5.0, 'radial');
+                    well.center.set(
+                        (Math.random() - 0.5) * 30,
+                        (Math.random() - 0.5) * 30,
+                        (Math.random() - 0.5) * 30
+                    );
+                    vectorFields.push(well);
+                    gravityWells.push(well);
+                    updateMathDisplay();
+                    break;
+
+                case 'v':
+                    // Add vortex
+                    const vortex = new VectorField(3.0, 'vortex');
+                    vortex.center.set(
+                        (Math.random() - 0.5) * 30,
+                        Math.random() * 20,
+                        (Math.random() - 0.5) * 30
+                    );
+                    vectorFields.push(vortex);
+                    updateMathDisplay();
+                    break;
+
+                case 'w':
+                    // Add wave emitter
+                    const wave = new VectorField(2.0, 'wave');
+                    wave.center.set(0, 0, 0);
+                    vectorFields.push(wave);
+                    updateMathDisplay();
+                    break;
+
+                case 'f':
+                    createFractalTree();
+                    break;
+
+                case 'c':
+                    const modes = ['orbit', 'follow', 'free'];
+                    const currentIndex = modes.indexOf(cameraMode);
+                    cameraMode = modes[(currentIndex + 1) % modes.length];
+                    document.getElementById('cam-mode').textContent = cameraMode.charAt(0).toUpperCase() + cameraMode.slice(1);
+                    break;
+
+                case '1': timeScale = 0.1; break;
+                case '2': timeScale = 0.5; break;
+                case '3': timeScale = 1.0; break;
+                case '4': timeScale = 2.0; break;
+                case '5': timeScale = 5.0; break;
+
+                case 'r':
+                    location.reload();
+                    break;
+            }
+        });
+
+        // ==================== MATH DISPLAY ====================
+        function updateMathDisplay() {
+            const mathDiv = document.getElementById('math-equations');
+            let html = '';
+
+            // Vector Field Equations
+            if (vectorFields.length > 0) {
+                html += '<div class="equation"><strong>Vector Fields Active:</strong><br>';
+                vectorFields.forEach((field, i) => {
+                    html += `Field ${i + 1}: ${field.type}<br>`;
+                    switch(field.type) {
+                        case 'radial':
+                            html += `F = -k • r / |r|² (Inverse Square Law)<br>`;
+                            break;
+                        case 'vortex':
+                            html += `F = axis × r / |r| (Cross Product)<br>`;
+                            break;
+                        case 'wave':
+                            html += `F = A • sin(kr - ωt) (Wave Equation)<br>`;
+                            break;
+                    }
+                });
+                html += '</div>';
+            }
+
+            // Particle Physics
+            html += '<div class="equation"><strong>Particle Dynamics:</strong><br>';
+            html += `a = ΣF / m (Newton's 2nd Law)<br>`;
+            html += `v(t+dt) = v(t) + a•dt (Velocity Verlet)<br>`;
+            html += `p(t+dt) = p(t) + v•dt (Position Update)<br>`;
+            html += '</div>';
+
+            // Quaternion Rotation
+            html += '<div class="equation"><strong>Quaternion Rotation:</strong><br>';
+            html += `q = [w, x, y, z]<br>`;
+            html += `q' = q₁ • q₂ (No Gimbal Lock!)<br>`;
+            html += `SLERP: q(t) = (q₁sinθ(1-t) + q₂sinθt) / sinθ<br>`;
+            html += '</div>';
+
+            // Lighting (Dot Product)
+            html += '<div class="equation"><strong>Lighting (Dot Product):</strong><br>';
+            html += `I = max(N • L, 0) (Lambertian Reflection)<br>`;
+            html += `N = normal vector, L = light direction<br>`;
+            html += '</div>';
+
+            mathDiv.innerHTML = html;
+        }
+
+        updateMathDisplay();
+
+        // ==================== ANIMATION LOOP ====================
+        let time = 0;
+        let lastTime = performance.now();
+        let frames = 0;
+        let fpsTime = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const currentTime = performance.now();
+            const deltaTime = (currentTime - lastTime) * 0.001 * timeScale;
+            lastTime = currentTime;
+
+            time += deltaTime;
+
+            // FPS Counter
+            frames++;
+            fpsTime += deltaTime;
+            if (fpsTime >= 1.0) {
+                document.getElementById('fps').textContent = frames;
+                frames = 0;
+                fpsTime = 0;
+            }
+
+            // Update vector fields
+            vectorFields.forEach(field => field.update(deltaTime));
+
+            // Update particles with vector field forces
+            const positions = particleGeometry.attributes.position.array;
+            const colors = particleGeometry.attributes.color.array;
+
+            particles.forEach((particle, i) => {
+                // Apply vector field forces
+                vectorFields.forEach(field => {
+                    const force = field.getForceAt(particle.position);
+                    particle.applyForce(force);
+                });
+
+                // Update particle
+                particle.update(deltaTime);
+
+                // Update geometry
+                const i3 = i * 3;
+                positions[i3] = particle.position.x;
+                positions[i3 + 1] = particle.position.y;
+                positions[i3 + 2] = particle.position.z;
+
+                colors[i3] = particle.color.r * particle.lifespan;
+                colors[i3 + 1] = particle.color.g * particle.lifespan;
+                colors[i3 + 2] = particle.color.b * particle.lifespan;
+
+                // Respawn if dead
+                if (particle.isDead()) {
+                    particle.position.set(
+                        (Math.random() - 0.5) * 100,
+                        (Math.random() - 0.5) * 100,
+                        (Math.random() - 0.5) * 100
+                    );
+                    particle.velocity.set(
+                        (Math.random() - 0.5) * 0.1,
+                        (Math.random() - 0.5) * 0.1,
+                        (Math.random() - 0.5) * 0.1
+                    );
+                    particle.age = 0;
+                    particle.lifespan = 1.0;
+                }
+            });
+
+            particleGeometry.attributes.position.needsUpdate = true;
+            particleGeometry.attributes.color.needsUpdate = true;
+
+            // Rotate procedural objects
+            proceduralObjects.forEach((obj, i) => {
+                obj.rotation.x += 0.005 * timeScale;
+                obj.rotation.y += 0.01 * timeScale;
+                
+                // Morphing effect using sine waves
+                const scale = 1 + Math.sin(time * 2 + i) * 0.1;
+                obj.scale.setScalar(scale);
+            });
+
+            // Animate point lights
+            pointLights.forEach((light, i) => {
+                const angle = time + (i * MATH.TAU / pointLights.length);
+                light.position.x = Math.cos(angle) * 25;
+                light.position.z = Math.sin(angle) * 25;
+                light.position.y = Math.sin(time * 2 + i) * 10 + 10;
+                
+                // Change color over time
+                const hue = (time * 0.1 + i / pointLights.length) % 1;
+                light.color.setHSL(hue, 1, 0.5);
+            });
+
+            // Camera control
+            switch(cameraMode) {
+                case 'orbit':
+                    cameraAngle += 0.3 * deltaTime;
+                    camera.position.x = Math.cos(cameraAngle) * cameraDistance;
+                    camera.position.z = Math.sin(cameraAngle) * cameraDistance;
+                    camera.position.y = 20 + Math.sin(time * 0.5) * 10;
+                    camera.lookAt(cameraTarget);
+                    break;
+
+                case 'follow':
+                    if (particles.length > 0) {
+                        cameraTarget.lerp(particles[0].position, 0.05);
+                    }
+                    camera.position.x = cameraTarget.x + Math.cos(cameraAngle) * cameraDistance;
+                    camera.position.z = cameraTarget.z + Math.sin(cameraAngle) * cameraDistance;
+                    camera.position.y = cameraTarget.y + 20;
+                    camera.lookAt(cameraTarget);
+                    break;
+
+                case 'free':
+                    camera.position.x = Math.cos(cameraAngle) * cameraDistance;
+                    camera.position.z = Math.sin(cameraAngle) * cameraDistance;
+                    camera.lookAt(0, 0, 0);
+                    break;
+            }
+
+            // Update HUD
+            document.getElementById('particles').textContent = PARTICLE_COUNT;
+            document.getElementById('fields').textContent = vectorFields.length;
+            document.getElementById('wells').textContent = gravityWells.length;
+            document.getElementById('time-scale').textContent = timeScale.toFixed(1) + 'x';
+
+            renderer.render(scene, camera);
+        }
+
+        // ==================== WINDOW RESIZE ====================
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // ==================== INITIALIZATION ====================
+        let progress = 0;
+        const loadInterval = setInterval(() => {
+            progress += 10;
+            document.getElementById('progress').style.width = progress + '%';
+            
+            if (progress >= 100) {
+                clearInterval(loadInterval);
+                document.getElementById('loader').classList.add('hidden');
+                animate();
+                console.log('✅ Quantum Universe Initialized!');
+            }
+        }, 100);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yayasan Yuana Bhakti Nusantara</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        // Warna Utama Biru (Identity YBN/IYM)
+                        primary: {
+                            50: '#e6f7ff',
+                            100: '#b3e0ff',
+                            400: '#04A8FF',
+                            500: '#038c85',
+                            600: '#036C65',
+                            700: '#025650',
+                            900: '#013f3a',
+                        },
+                        // Warna Merah Aksen
+                        'custom-red': {
+                            100: '#ffe1e1',
+                            400: '#E3080B',
+                            500: '#b3120f',
+                            600: '#831C13',
+                            700: '#6a170f',
+                        },
+                        // Warna Brand Tambahan
+                        'brand-yellow': '#FCD34D',
+                        'brand-green': '#5AD666',
+                        'brand-red': '#E3080B',
+                        // SDG Specific Colors
+                        'sdg-2': '#E5243B',
+                        'sdg-3': '#4C9F38',
+                        'sdg-4': '#C5192D',
+                        'sdg-5': '#FF3A21',
+                        'sdg-8': '#A21942',
+                        'sdg-13': '#3F7E44',
+                        'sdg-17': '#19486A',
+                    },
+                    backgroundImage: {
+                        'gradient-primary': 'linear-gradient(to right, #04A8FF, #036C65)',
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #04A8FF;
+            border-radius: 4px;
+            background-image: linear-gradient(to bottom, #04A8FF, #036C65);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Text Stroke Effect */
+        .text-outline-white {
+            color: transparent;
+            -webkit-text-stroke: 1px white;
+            transition: all 0.3s ease;
+        }
+
+        .text-outline-white:hover {
+            color: white;
+            -webkit-text-stroke: 0px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+        }
+
+        /* Marquee Animation */
+        .animate-marquee {
+            animation: marquee 35s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Animation Utilities (Scroll Reveal) */
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal-element.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-100 {
+            transition-delay: 0.1s;
+        }
+
+        .delay-200 {
+            transition-delay: 0.2s;
+        }
+
+        .delay-300 {
+            transition-delay: 0.3s;
+        }
+
+        /* Hero Image Zoom Animation */
+        .hero-bg-anim {
+            animation: slowZoom 20s infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.1);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-gray-700 antialiased bg-gray-50 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo YBN -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer gap-3 group" onclick="window.scrollTo(0,0)">
+                    <img src="asset/LOGO YBN_NO BG.png" alt="Logo YBN"
+                        class="h-12 w-auto rounded-lg shadow-sm transition-transform duration-300 group-hover:scale-110"
+                        onerror="this.src='https://placehold.co/100x100?text=YBN';">
+                    <div class="flex flex-col">
+                        <span
+                            class="font-bold text-lg md:text-xl text-gray-900 tracking-tight leading-none group-hover:text-primary-600 transition-colors">Yayasan
+                            Yuana Bhakti Nusantara</span>
+                        <span class="font-medium text-xs text-primary-600 tracking-wider uppercase mt-0.5">Home of
+                            Indonesia Youth Movement</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex space-x-8 items-center">
+                    <a href="#beranda"
+                        class="text-gray-900 hover:text-primary-600 font-medium transition relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Beranda</a>
+                    <a href="#tentang"
+                        class="text-gray-900 hover:text-primary-600 font-medium transition relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Tentang</a>
+                    <a href="#visi-misi"
+                        class="text-gray-900 hover:text-primary-600 font-medium transition relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Visi
+                        Misi</a>
+                    <a href="#program"
+                        class="text-gray-900 hover:text-primary-600 font-medium transition relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Program</a>
+                    <a href="#proyek"
+                        class="text-gray-900 hover:text-primary-600 font-medium transition relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary-600 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Jejak
+                        Langkah</a>
+                    <button onclick="openModal('register')"
+                        class="bg-gradient-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-white px-5 py-2.5 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-primary-500/50 transform hover:-translate-y-1 hover:scale-105 active:scale-95">
+                        Gabung Aksi
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()"
+                        class="text-gray-900 hover:text-primary-600 focus:outline-none p-2 transition-colors">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu"
+            class="hidden lg:hidden bg-white/95 backdrop-blur-md border-t absolute w-full shadow-xl left-0 transition-all duration-300">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#beranda" onclick="toggleMobileMenu()"
+                    class="block px-3 py-3 text-base font-medium text-gray-900 hover:bg-gray-50 hover:text-primary-600 rounded-md transition-colors">Beranda</a>
+                <a href="#tentang" onclick="toggleMobileMenu()"
+                    class="block px-3 py-3 text-base font-medium text-gray-900 hover:bg-gray-50 hover:text-primary-600 rounded-md transition-colors">Tentang</a>
+                <a href="#program" onclick="toggleMobileMenu()"
+                    class="block px-3 py-3 text-base font-medium text-gray-900 hover:bg-gray-50 hover:text-primary-600 rounded-md transition-colors">Program</a>
+                <div class="pt-4">
+                    <button onclick="openModal('register'); toggleMobileMenu()"
+                        class="w-full text-center py-3 bg-gradient-to-r from-primary-400 to-primary-600 text-white rounded-lg font-medium shadow-md active:scale-95 transition-transform">Gabung
+                        Aksi</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="beranda"
+        class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden h-screen min-h-[600px] flex items-center">
+        <!-- Background Image with Animation -->
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <img src="asset/pangandaran.jpg" alt="Dokumentasi IYM"
+                class="w-full h-full object-cover hero-bg-anim origin-center"
+                onerror="this.src='https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2070&auto=format&fit=crop';">
+            <div class="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/70 to-transparent"></div>
+        </div>
+
+        <!-- Perubahan z-10 menjadi z-30 untuk memastikan konten hero berada di atas Stats Section -->
+        <div class="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="lg:w-3/4">
+                <div
+                    class="reveal-element inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-full mb-6 backdrop-blur-sm hover:bg-white/20 transition-colors cursor-default">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-ping absolute opacity-75"></span>
+                    <span class="w-2 h-2 bg-green-400 rounded-full relative"></span>
+                    <span class="text-white font-medium text-sm tracking-wide">AHU-0013235.AH.01.12/2025</span>
+                </div>
+                <h1
+                    class="reveal-element delay-100 text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6 font-poppins">
+                    Yayasan Yuana <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-green-400">Bhakti
+                        Nusantara</span>
+                </h1>
+                <p
+                    class="reveal-element delay-200 text-2xl text-gray-200 mb-8 font-serif italic border-l-4 border-primary-500 pl-4">
+                    "Merajut Asa di Setiap Sudut Nusantara"
+                </p>
+                <p class="reveal-element delay-300 text-gray-300 mb-10 max-w-2xl text-lg leading-relaxed">
+                    Wadah Penggerak Perubahan Sosial yang menaungi <strong> Indonesia Youth Movement.</strong>
+
+                    Membangun negeri melalui bidang pendidikan, kesehatan, lingkungan ekonomi kreatif, dan kesetaraan
+                    gender.
+
+                    Mari turut serta berkontribusi! </p>
+                <div class="reveal-element delay-300 flex flex-col sm:flex-row gap-4">
+                    <button onclick="document.getElementById('program').scrollIntoView()"
+                        class="relative z-30 group bg-gradient-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg shadow-primary-900/50 flex items-center justify-center gap-2 hover:-translate-y-1">
+                        Lihat Program Kami <i
+                            class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce cursor-pointer opacity-70 hover:opacity-100 transition-opacity"
+            onclick="window.scrollTo(0, window.innerHeight)">
+            <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Stats Section (Data IYM) -->
+    <div class="relative z-20 -mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-element">
+        <div
+            class="bg-white rounded-2xl shadow-2xl grid grid-cols-2 md:grid-cols-4 gap-8 p-8 border border-gray-100 relative overflow-hidden group hover:shadow-primary-500/20 transition-all duration-500">
+            <!-- Decorative BG -->
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary-50 rounded-bl-full opacity-50"></div>
+
+            <div class="text-center relative z-10 p-2 hover:bg-gray-50 rounded-xl transition-colors">
+                <div class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600 mb-1 counter"
+                    data-target="41">0</div>
+                <div class="text-sm text-gray-500 font-medium uppercase tracking-wide mt-2">Proyek Sosial</div>
+            </div>
+            <div class="text-center relative z-10 p-2 hover:bg-gray-50 rounded-xl transition-colors">
+                <div class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600 mb-1 counter"
+                    data-target="424">0</div>
+                <div class="text-sm text-gray-500 font-medium uppercase tracking-wide mt-2">Relawan</div>
+            </div>
+            <div class="text-center relative z-10 p-2 hover:bg-gray-50 rounded-xl transition-colors">
+                <div class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600 mb-1 counter"
+                    data-target="79">0</div>
+                <div class="text-sm text-gray-500 font-medium uppercase tracking-wide mt-2">Mitra</div>
+            </div>
+            <div class="text-center relative z-10 p-2 hover:bg-gray-50 rounded-xl transition-colors">
+                <div class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600 mb-1 counter"
+                    data-target="2744">0</div>
+                <div class="text-sm text-gray-500 font-medium uppercase tracking-wide mt-2">Penerima Manfaat</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="tentang" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-16 items-start">
+                <div class="lg:w-1/2 reveal-element">
+                    <h2
+                        class="text-primary-600 font-bold uppercase tracking-widest text-sm mb-2 flex items-center gap-2">
+                        <span class="w-8 h-[2px] bg-primary-600 inline-block"></span> Tentang Kami
+                    </h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-poppins leading-tight">Mengenal
+                        Yayasan <br>Yuana Bhakti Nusantara</h3>
+                    <div class="prose prose-lg text-gray-600 text-justify">
+                        <p>
+                            Yayasan Yuana Bhakti Nusantara <strong>YBN</strong> adalah organisasi sosial di bawah
+                            naungan Yayasan Yuana Bhakti Nusantara yang resmi berdiri sejak tahun 2022. Kami hadir
+                            sebagai wadah kolaborasi bagi siapa pun yang peduli terhadap masa depan Indonesia, tanpa
+                            memandang latar belakang politik, suku, maupun agama yang terbuka bagi siapa pun yang peduli
+                            dan ingin berkontribusi bagi negeri.
+                        </p>
+
+                    </div>
+
+                    <!-- Legal Badge -->
+                    <div
+                        class="mt-8 flex items-center gap-4 bg-gray-50 p-4 rounded-xl border border-gray-100 hover:border-primary-200 hover:shadow-md transition-all duration-300">
+                        <div
+                            class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 text-xl animate-float">
+                            <i class="fa-solid fa-file-shield"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase font-bold">Legalitas Resmi</p>
+                            <p class="text-gray-900 font-semibold">AHU-0013235.AH.01.12/2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Values Grid -->
+                <div class="lg:w-1/2">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 font-poppins reveal-element">Value Kami</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div
+                            class="reveal-element delay-100 bg-primary-50 p-6 rounded-2xl border border-primary-100 hover:shadow-lg hover:-translate-y-2 transition-all duration-300 cursor-default">
+                            <div
+                                class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-sm mb-4 text-primary-600 text-xl">
+                                <i class="fa-solid fa-handshake"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-900 mb-2">Kolaborasi Strategis</h4>
+                            <p class="text-sm text-gray-600">Sinergi pemerintah, komunitas, dan masyarakat untuk dampak
+                                maksimal.</p>
+                        </div>
+                        <div
+                            class="reveal-element delay-200 bg-custom-red-100/50 p-6 rounded-2xl border border-custom-red-400/20 hover:shadow-lg hover:-translate-y-2 transition-all duration-300 cursor-default">
+                            <div
+                                class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-sm mb-4 text-custom-red-600 text-xl">
+                                <i class="fa-solid fa-people-carry-box"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-900 mb-2">Pemberdayaan Inklusif</h4>
+                            <p class="text-sm text-gray-600">Menciptakan kemandirian masyarakat secara berkelanjutan.
+                            </p>
+                        </div>
+                        <div
+                            class="reveal-element delay-300 bg-green-50 p-6 rounded-2xl border border-green-100 hover:shadow-lg hover:-translate-y-2 transition-all duration-300 cursor-default">
+                            <div
+                                class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-sm mb-4 text-green-600 text-xl">
+                                <i class="fa-solid fa-seedling"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-900 mb-2">Keberlanjutan</h4>
+                            <p class="text-sm text-gray-600">Program jangka panjang yang relevan dengan kebutuhan lokal.
+                            </p>
+                        </div>
+                        <div
+                            class="reveal-element delay-100 bg-orange-50 p-6 rounded-2xl border border-orange-100 hover:shadow-lg hover:-translate-y-2 transition-all duration-300 cursor-default">
+                            <div
+                                class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-sm mb-4 text-orange-600 text-xl">
+                                <i class="fa-solid fa-universal-access"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-900 mb-2">Akses untuk Semua</h4>
+                            <p class="text-sm text-gray-600">Keadilan sosial tanpa memandang latar belakang.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Details (Kenapa IYM?) -->
+    <section class="py-20 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative reveal-element">
+                    <div
+                        class="absolute -top-10 -left-10 w-40 h-40 bg-primary-100 rounded-full opacity-50 blur-3xl animate-pulse">
+                    </div>
+                    <div
+                        class="absolute -bottom-10 -right-10 w-40 h-40 bg-brand-green/30 rounded-full opacity-50 blur-3xl animate-pulse delay-100">
+                    </div>
+                    <img src="asset/kenapa iym.png" alt="Teamwork"
+                        class="relative rounded-2xl shadow-2xl z-10 w-full hover:scale-[1.02] transition-transform duration-500"
+                        onerror="this.src='https://images.unsplash.com/photo-1529390003868-6c640a9376c6?q=80&w=2070&auto=format&fit=crop';">
+                </div>
+                <div class="lg:w-1/2 reveal-element delay-200">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Kenapa <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600">Indonesia
+                            Youth Movement</span>?</h2>
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                        Kami telah melaksanakan lebih dari 40 project baik offline maupun online di berbagai daerah di
+                        Indonesia, dan berkerja sama dengan berbagai instansi baik pemerintah, swasta, media, dan
+                        komunitas lokal.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex group">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission -->
+    <section id="visi-misi" class="py-20 bg-gray-900 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-primary-900/50 rounded-l-full blur-3xl opacity-30"></div>
+        <div class="absolute bottom-0 left-0 w-1/3 h-1/2 bg-custom-red-900/40 rounded-r-full blur-3xl opacity-30"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <div class="text-center mb-16 reveal-element">
+                <h2
+                    class="text-3xl font-bold font-poppins mb-4 inline-block relative after:content-[''] after:block after:w-12 after:h-1 after:bg-primary-500 after:mx-auto after:mt-2 after:rounded-full">
+                    Visi & Misi</h2>
+                <p class="max-w-3xl mx-auto text-gray-300 text-lg leading-relaxed mt-4">
+                    Menjadi organisasi penggerak perubahan sosial yang menghadirkan akses, fasilitas,
+                    keadilan, dan pemberdayaan bagi masyarakat melalui aksi-aksi kolaboratif yang
+                    berkualitas, inklusif, dan berkelanjutan, khususnya di bidang pendidikan, kesehatan,
+                    lingkungan, ekonomi kreatif, serta kesetaraan gender. </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <!-- Mission Cards -->
+                <div
+                    class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-primary-500 transition-all duration-300 group hover:-translate-y-2 hover:shadow-lg hover:shadow-primary-500/20 reveal-element delay-100">
+                    <div
+                        class="w-10 h-10 rounded-full bg-primary-500/20 flex items-center justify-center text-primary-400 mb-4 group-hover:bg-primary-500 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <h4 class="font-bold mb-2 group-hover:text-primary-400 transition-colors">Pendidikan</h4>
+                    <p class="text-xs text-gray-400 group-hover:text-gray-300">Akses fasilitas & dukungan belajar
+                        berkualitas.</p>
+                </div>
+                <div
+                    class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-custom-red-500 transition-all duration-300 group hover:-translate-y-2 hover:shadow-lg hover:shadow-custom-red-500/20 reveal-element delay-200">
+                    <div
+                        class="w-10 h-10 rounded-full bg-custom-red-500/20 flex items-center justify-center text-custom-red-400 mb-4 group-hover:bg-custom-red-500 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h4 class="font-bold mb-2 group-hover:text-custom-red-400 transition-colors">Kesehatan</h4>
+                    <p class="text-xs text-gray-400 group-hover:text-gray-300">Edukasi preventif & akses layanan dasar.
+                    </p>
+                </div>
+                <div
+                    class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-500 transition-all duration-300 group hover:-translate-y-2 hover:shadow-lg hover:shadow-green-500/20 reveal-element delay-300">
+                    <div
+                        class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 mb-4 group-hover:bg-green-500 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h4 class="font-bold mb-2 group-hover:text-green-400 transition-colors">Lingkungan</h4>
+                    <p class="text-xs text-gray-400 group-hover:text-gray-300">Pelestarian alam & aksi keberlanjutan.
+                    </p>
+                </div>
+                <div
+                    class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-orange-500 transition-all duration-300 group hover:-translate-y-2 hover:shadow-lg hover:shadow-orange-500/20 reveal-element delay-100">
+                    <div
+                        class="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400 mb-4 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h4 class="font-bold mb-2 group-hover:text-orange-400 transition-colors">Ekonomi Kreatif</h4>
+                    <p class="text-xs text-gray-400 group-hover:text-gray-300">Kemandirian berbasis potensi lokal.</p>
+                </div>
+                <div
+                    class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-purple-500 transition-all duration-300 group hover:-translate-y-2 hover:shadow-lg hover:shadow-purple-500/20 reveal-element delay-200">
+                    <div
+                        class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 mb-4 group-hover:bg-purple-500 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <h4 class="font-bold mb-2 group-hover:text-purple-400 transition-colors">Kesetaraan</h4>
+                    <p class="text-xs text-gray-400 group-hover:text-gray-300">Pemberdayaan perempuan & kelompok rentan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: SDGs Focus -->
+    <section id="sdgs" class="py-24 bg-white relative overflow-hidden text-center">
+        <!-- Decorative Background Elements -->
+        <div
+            class="absolute top-0 left-0 w-64 h-64 bg-primary-50 rounded-full mix-blend-multiply filter blur-3xl opacity-30 -translate-x-1/2 -translate-y-1/2">
+        </div>
+        <div
+            class="absolute bottom-0 right-0 w-64 h-64 bg-brand-yellow rounded-full mix-blend-multiply filter blur-3xl opacity-20 translate-x-1/2 translate-y-1/2">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-4xl mx-auto mb-16">
+                <div class="reveal-element">
+                    <span
+                        class="inline-block px-4 py-1.5 bg-primary-100 text-primary-700 rounded-full text-xs font-bold uppercase tracking-widest mb-4">SUSTAINABLE
+                        DEVELOPMENT GOALS</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 font-poppins leading-tight mb-6">
+                        Our Sustainable Development Goals <span class="text-primary-600">(SDGs)</span> Focus
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                        Sustainable Development Goals (SDGs) adalah 17 tujuan global yang ditetapkan oleh PBB pada tahun
+                        2015 sebagai seruan universal untuk mengakhiri kemiskinan, melindungi planet, dan memastikan
+                        semua orang menikmati perdamaian serta kesejahteraan pada tahun 2030.
+                    </p>
+                    <div class="bg-gray-50 border-l-4 border-primary-500 p-6 rounded-r-2xl text-left shadow-sm">
+                        <p class="text-gray-700 font-medium italic leading-relaxed">
+                            "Yayasan Yuana Bhakti Nusantara berkomitmen untuk turut serta mewujudkan Tujuan Pembangunan
+                            Berkelanjutan pada 7 poin strategis yang menjadi fokus utama aksi kami."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Focus List Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal-element delay-300">
+                <!-- Goal Card -->
+                <div
+                    class="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="mb-4">
+                        <img src="sa/2.png" alt="SDG 2" class="h-24 w-auto object-contain">
+                    </div>
+                    <h4 class="font-bold text-gray-900 uppercase text-sm tracking-tight mb-2 text-left">Tanpa Kelaparan
+                    </h4>
+                    <p class="text-xs text-gray-500 text-left">Mendukung ketahanan pangan masyarakat di daerah binaan.
+                    </p>
+                </div>
+                <!-- Goal Card -->
+                <div
+                    class="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="mb-4">
+                        <img src="sa/3.png" alt="SDG 3" class="h-24 w-auto object-contain">
+                    </div>
+                    <h4 class="font-bold text-gray-900 uppercase text-sm tracking-tight mb-2 text-left">Kehidupan Sehat
+                        & Sejahtera</h4>
+                    <p class="text-xs text-gray-500 text-left">Akses layanan kesehatan rutin bagi warga pedalaman.</p>
+                </div>
+                <!-- Goal Card -->
+                <div
+                    class="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="mb-4">
+                        <img src="sa/4.png" alt="SDG 4" class="h-24 w-auto object-contain">
+                    </div>
+                    <h4 class="font-bold text-gray-900 uppercase text-sm tracking-tight mb-2 text-left">Pendidikan
+                        Berkualitas</h4>
+                    <p class="text-xs text-gray-500 text-left">Menyediakan fasilitas belajar yang inklusif untuk masa
+                        depan.</p>
+                </div>
+                <!-- Goal Card -->
+                <div
+                    class="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="mb-4">
+                        <img src="sa/5.png" alt="SDG 5" class="h-24 w-auto object-contain">
+                    </div>
+                    <h4 class="font-bold text-gray-900 uppercase text-sm tracking-tight mb-2 text-left">Kesetaraan
+                        Gender</h4>
+                    <p class="text-xs text-gray-500 text-left">Pemberdayaan perempuan melalui ekonomi kreatif.</p>
+                </div>
+                <!-- Goal Card -->
+                <div
+                    class="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="mb-4">
+                        <img src="sa/8.png" alt="SDG 8" class="h-24 w-auto object-contain">
+                    </div>
+                    <h4 class="font-bold text-gray-900 uppercase text-sm tracking-tight mb-2 text-left">Pekerjaan Layak
+                    </h4>
+                    <p class="text-xs text-gray-500 text-left">Pendampingan UMKM untuk pertumbuhan ekonomi lokal.</p>
+                </div>
+                <!-- Goal Card -->
+                <div
+                    class="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="mb-4">
+                        <img src="sa/13.png" alt="SDG 13" class="h-24 w-auto object-contain">
+                    </div>
+                    <h4 class="font-bold text-gray-900 uppercase text-sm tracking-tight mb-2 text-left">Perubahan Iklim
+                    </h4>
+                    <p class="text-xs text-gray-500 text-left">Aksi penanaman pohon dan monitoring lingkungan
+                        berkelanjutan.</p>
+                </div>
+                <!-- Goal Card (Goal 17) -->
+                <div
+                    class="group bg-sdg-17 p-6 rounded-3xl shadow-lg lg:col-span-2 hover:shadow-2xl transition-all duration-300 flex items-center gap-8">
+                    <div class="hidden sm:flex w-24 h-24 items-center justify-center text-white text-3xl shrink-0">
+                        <img src="sa/17.png" alt="SDG 17" class="h-full w-full object-contain rounded-xl">
+                    </div>
+                    <div class="text-left">
+                        <div class="flex items-center gap-2 mb-2">
+                            <!-- Number removed as it's likely in the image, or just cleaner without repetitive number -->
+                            <h4 class="font-bold text-white uppercase text-sm tracking-wider">Kemitraan untuk Tujuan
+                            </h4>
+                        </div>
+                        <p class="text-xs text-white/80 leading-relaxed">Membangun kolaborasi strategis dengan berbagai
+                            pihak untuk mencapai dampak yang maksimal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Structure -->
+    <section class="py-20 bg-gray-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-12 font-poppins reveal-element">Struktur Organisasi</h2>
+
+            <!-- Management & Operations Team -->
+            <div class="mb-16 reveal-element delay-100">
+                <h3 class="text-xl font-bold text-primary-600 uppercase tracking-widest mb-8">MANAGEMENT & OPERATIONS
+                    TEAM</h3>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <!-- MEL Lead -->
+                    <div
+                        class="bg-gray-50 p-6 rounded-xl w-64 shadow-sm hover:shadow-xl transition-shadow duration-300 group">
+                        <div
+                            class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden border-2 border-transparent group-hover:border-primary-500 transition-colors">
+                            <img src="asset/dr.nisa.png" alt="dr. Nisa"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform"
+                                onerror="this.src='https://ui-avatars.com/api/?name=Nisa+Lathifah&background=04A8FF&color=fff';">
+                        </div>
+                        <h4 class="font-bold text-gray-900">dr. Nisa Lathifah R.</h4>
+                    </div>
+                    <!-- Pengawas -->
+                    <div
+                        class="bg-gray-50 p-6 rounded-xl w-64 shadow-sm hover:shadow-xl transition-shadow duration-300 group">
+                        <div
+                            class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden border-2 border-transparent group-hover:border-primary-500 transition-colors">
+                            <img src="asset/Hairullah Rizki.jpg" alt="Hairul Rizki"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform"
+                                onerror="this.src='https://ui-avatars.com/api/?name=Hairul+Rizki&background=04A8FF&color=fff';">
+                        </div>
+                        <h4 class="font-bold text-gray-900">Hairul Rizki</h4>
+
+                    </div>
+                    <!-- Pengurus 1 -->
+                    <div
+                        class="bg-gray-50 p-6 rounded-xl w-64 shadow-sm hover:shadow-xl transition-shadow duration-300 group">
+                        <div
+                            class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden border-2 border-transparent group-hover:border-primary-500 transition-colors">
+                            <img src="asset/Ineu Melia.JPG" alt="Ineu Melia"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform"
+                                onerror="this.src='https://ui-avatars.com/api/?name=Ineu+Melia&background=04A8FF&color=fff';">
+                        </div>
+                        <h4 class="font-bold text-gray-900">Ineu Melia F., S.Sos</h4>
+                    </div>
+                    <!-- Pengurus 2 -->
+                    <div
+                        class="bg-gray-50 p-6 rounded-xl w-64 shadow-sm hover:shadow-xl transition-shadow duration-300 group">
+                        <div
+                            class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden border-2 border-transparent group-hover:border-primary-500 transition-colors">
+                            <img src="asset/Wahyuning Suci Prabandini.png" alt="Wahyuningsih Suci"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform"
+                                onerror="this.src='https://ui-avatars.com/api/?name=Wahyuningsih&background=04A8FF&color=fff';">
+                        </div>
+                        <h4 class="font-bold text-gray-900">Wahyuningsih Suci, S.I.Kom</h4>
+                    </div>
+                    <!-- Pengurus 3 (Gabe) -->
+                    <div
+                        class="bg-gray-50 p-6 rounded-xl w-64 shadow-sm hover:shadow-xl transition-shadow duration-300 group">
+                        <div
+                            class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden border-2 border-transparent group-hover:border-primary-500 transition-colors">
+                            <img src="asset/kadian.png" alt="Gabe"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform"
+                                onerror="this.src='https://ui-avatars.com/api/?name=Gabe&background=04A8FF&color=fff';">
+                        </div>
+                        <h4 class="font-bold text-gray-900">Dian Rachmawati, S.Hum</h4>
+                    </div>
+                    <div
+                        class="bg-gray-50 p-6 rounded-xl w-64 shadow-sm hover:shadow-xl transition-shadow duration-300 group">
+                        <div
+                            class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden border-2 border-transparent group-hover:border-primary-500 transition-colors">
+                            <img src="asset/kamukhlas.png" alt="Wahyuningsih Suci"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform"
+                                onerror="this.src='https://ui-avatars.com/api/?name=Wahyuningsih&background=04A8FF&color=fff';">
+                        </div>
+                        <h4 class="font-bold text-gray-900">Mukhlas Ibnu Majid</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Programs -->
+    <section id="program" class="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal-element">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 font-poppins">Program Utama</h2>
+                <p class="text-gray-500 mt-2">Dijalankan oleh Indonesia Youth Movement (IYM)</p>
+            </div>
+
+            <div class="space-y-12">
+                <!-- Rumah Asa Yuana -->
+                <div
+                    class="reveal-element flex flex-col md:flex-row gap-8 items-center bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-500 group">
+                    <div class="md:w-1/2 overflow-hidden rounded-2xl">
+                        <img src="asset/rumah asa yuana.png"
+                            class="w-full h-64 object-cover shadow-md group-hover:scale-110 transition-transform duration-500"
+                            alt="Rumah Asa"
+                            onerror="this.src='https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2026&auto=format&fit=crop';">
+                    </div>
+                    <div class="md:w-1/2">
+                        <div
+                            class="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-bold rounded-full mb-3">
+                            Desa Binaan</div>
+                        <h3
+                            class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary-600 transition-colors">
+                            Rumah Asa Yuana</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            Program berkelanjutan di desa/kampung binaan. Meliputi pendampingan UMKM (produksi hingga
+                            pemasaran), penanaman pohon dan monitoring lingkungan, cek kesehatan rutin, serta kegiatan
+                            belajar mengajar terstruktur untuk masyarakat.
+                        </p>
+                        <button
+                            class="text-primary-600 font-bold hover:underline group-hover:translate-x-2 transition-transform inline-flex items-center gap-2">Selengkapnya
+                            <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Bhakti Nusantara -->
+                <div
+                    class="reveal-element flex flex-col md:flex-row-reverse gap-8 items-center bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-500 group">
+                    <div class="md:w-1/2 overflow-hidden rounded-2xl">
+                        <img src="asset/bhakiti.png"
+                            class="w-full h-64 object-cover shadow-md group-hover:scale-110 transition-transform duration-500"
+                            alt="Bhakti Nusantara"
+                            onerror="this.src='https://images.unsplash.com/photo-1599582236894-067645166b0a?q=80&w=2069&auto=format&fit=crop';">
+                    </div>
+                    <div class="md:w-1/2">
+                        <div
+                            class="inline-block px-3 py-1 bg-custom-red-100 text-custom-red-700 text-xs font-bold rounded-full mb-3">
+                            Daerah 3T</div>
+                        <h3
+                            class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-custom-red-600 transition-colors">
+                            Bhakti Nusantara</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            Pengabdian dan pemberdayaan masyarakat di wilayah 3T (Terluar, Terpencil, Tertinggal). Fokus
+                            pada peningkatan kualitas hidup di bidang pendidikan, kesehatan, ekonomi kreatif, dan
+                            lingkungan.
+                        </p>
+                        <button
+                            class="text-custom-red-600 font-bold hover:underline group-hover:translate-x-2 transition-transform inline-flex items-center gap-2">Selengkapnya
+                            <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Grid for Bhakti Sapa & Ngobat -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div
+                        class="reveal-element delay-100 bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <div
+                            class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-4">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Bhakti Sapa</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Aksi sosial rutin bulanan atau insidental (bencana). Menyasar panti asuhan, komunitas
+                            marginal, dan masyarakat terdampak bencana dengan donasi dan layanan edukatif/kesehatan.
+                        </p>
+                        <img src="asset/sapa.jpg" alt="Bhakti Sapa" class="w-full h-48 object-cover rounded-xl mt-4">
+                    </div>
+                    <div
+                        class="reveal-element delay-200 bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <div
+                            class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 text-2xl mb-4">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Ngobrol Bermanfaat (Ngobat)</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Ruang belajar dan berbagi online. Mendalami topik pengembangan diri dan isu sosial,
+                            menjembatani anak muda dari mana saja untuk terhubung dan berkontribusi.
+                        </p>
+                        <img src="asset/ngobat.jpg" alt="Ngobat" class="w-full h-48 object-cover rounded-xl mt-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects History Section -->
+    <section id="proyek" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal-element">
+                <h2 class="text-3xl font-bold text-gray-900 font-poppins">Jejak Langkah Kami</h2>
+                <p class="text-gray-500 mt-2">Dokumentasi Bhakti Nusantara 1-6</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <div
+                    class="reveal-element group relative overflow-hidden rounded-2xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500">
+                    <img src="asset/pangandaran1.JPG"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition duration-700" alt="Pangandaran"
+                        onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop';">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div
+                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <p class="text-custom-red-400 text-xs font-bold uppercase mb-1">Bhakti Nusantara 1</p>
+                            <h3 class="text-white font-bold text-lg">Pangandaran & P. Sabira</h3>
+                            <p class="text-gray-300 text-xs mt-1">Jawa Barat & DKI Jakarta</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div
+                    class="reveal-element delay-100 group relative overflow-hidden rounded-2xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500">
+                    <img src="asset/dompu dan bintan.jpg"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition duration-700" alt="Dompu"
+                        onerror="this.src='https://images.unsplash.com/photo-1559160581-44bd4b56c429?q=80&w=1974&auto=format&fit=crop';">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div
+                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <p class="text-custom-red-400 text-xs font-bold uppercase mb-1">Bhakti Nusantara 2</p>
+                            <h3 class="text-white font-bold text-lg">Dompu & Bintan</h3>
+                            <p class="text-gray-300 text-xs mt-1">NTB & Kepulauan Riau</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div
+                    class="reveal-element delay-200 group relative overflow-hidden rounded-2xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500">
+                    <img src="asset/jimbara dan natuna.png"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition duration-700" alt="Bali"
+                        onerror="this.src='https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=2038&auto=format&fit=crop';">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div
+                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <p class="text-custom-red-400 text-xs font-bold uppercase mb-1">Bhakti Nusantara 3</p>
+                            <h3 class="text-white font-bold text-lg">Jimbaran & Natuna</h3>
+                            <p class="text-gray-300 text-xs mt-1">Bali & Kepulauan Riau</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div
+                    class="reveal-element group relative overflow-hidden rounded-2xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500">
+                    <img src="asset/bima dan babel.jpg"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition duration-700" alt="Bima"
+                        onerror="this.src='https://images.unsplash.com/photo-1544422204-7a660d5b4a04?q=80&w=2070&auto=format&fit=crop';">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div
+                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <p class="text-custom-red-400 text-xs font-bold uppercase mb-1">Bhakti Nusantara 4</p>
+                            <h3 class="text-white font-bold text-lg">Bima & Bangka Belitung</h3>
+                            <p class="text-gray-300 text-xs mt-1">NTB & Babel</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div
+                    class="reveal-element delay-100 group relative overflow-hidden rounded-2xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500">
+                    <img src="asset/karimunjawa.JPG"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition duration-700" alt="Karimunjawa"
+                        onerror="this.src='https://images.unsplash.com/photo-1628583272922-86938cb270f2?q=80&w=2070&auto=format&fit=crop';">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div
+                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <p class="text-custom-red-400 text-xs font-bold uppercase mb-1">Bhakti Nusantara 5</p>
+                            <h3 class="text-white font-bold text-lg">Karimunjawa</h3>
+                            <p class="text-gray-300 text-xs mt-1">Jawa Tengah</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div
+                    class="reveal-element delay-200 group relative overflow-hidden rounded-2xl shadow-md cursor-pointer hover:shadow-2xl transition-all duration-500">
+                    <img src="asset/sumbawa.JPG"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition duration-700" alt="Sumbawa"
+                        onerror="this.src='https://images.unsplash.com/photo-1540306385317-06df4c748c03?q=80&w=2070&auto=format&fit=crop';">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div
+                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <p class="text-custom-red-400 text-xs font-bold uppercase mb-1">Bhakti Nusantara 6</p>
+                            <h3 class="text-white font-bold text-lg">Sumbawa</h3>
+                            <p class="text-gray-300 text-xs mt-1">Nusa Tenggara Barat</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center reveal-element">
+                <p class="text-gray-500 text-sm">Dan 7+ Mini Projects "Bhakti Sapa" di Yogyakarta, Depok, Bandung, &
+                    Jakarta.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial/Achievement Scroller -->
+    <section class="py-12 bg-gray-900 text-white overflow-hidden border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 mb-8 text-center reveal-element">
+            <h3 class="text-gray-400 uppercase tracking-widest text-sm">Jejak Langkah Kami</h3>
+        </div>
+        <div class="relative flex overflow-x-hidden group hover:opacity-100 transition-opacity opacity-90">
+            <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-900 to-transparent z-10"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-900 to-transparent z-10"></div>
+            <div class="animate-marquee whitespace-nowrap flex gap-8 text-gray-300 font-medium text-lg">
+                <span>Pangandaran</span> <span class="text-primary-500">•</span>
+                <span>Pulau Sabira</span> <span class="text-primary-500">•</span>
+                <span>Dompu (NTB)</span> <span class="text-primary-500">•</span>
+                <span>Bintan (Kepri)</span> <span class="text-primary-500">•</span>
+                <span>Bali</span> <span class="text-primary-500">•</span>
+                <span>Natuna</span> <span class="text-primary-500">•</span>
+                <span>Bima</span> <span class="text-primary-500">•</span>
+                <span>Bangka Belitung</span> <span class="text-primary-500">•</span>
+                <span>Karimunjawa</span> <span class="text-primary-500">•</span>
+                <span>Sumbawa</span> <span class="text-primary-500">•</span>
+                <span>Jabodetabek</span> <span class="text-primary-500">•</span>
+                <span>Pangandaran</span> <span class="text-primary-500">•</span>
+                <span>Pulau Sabira</span> <span class="text-primary-500">•</span>
+                <span>Dompu (NTB)</span> <span class="text-primary-500">•</span>
+                <span>Bintan (Kepri)</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- NEW SECTION: Mari Turut Berkontribusi -->
+    <section id="kontribusi" class="py-20 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="reveal-element text-3xl md:text-4xl font-bold text-gray-900 font-poppins mb-12">
+                Mari Turut Berkontribusi
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Button 1: Donasi -->
+                <div class="reveal-element delay-100">
+                    <a href="https://wa.me/6285126724272?text=Halo%20Yayasan%20Yuana%20Bhakti%20Nusantara,%20saya%20ingin%20berkontribusi%20melalui%20donasi."
+                        class="group block p-8 bg-primary-50 hover:bg-primary-600 border border-primary-100 rounded-3xl transition-all duration-500 hover:-translate-y-2 shadow-sm hover:shadow-2xl">
+                        <div
+                            class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-primary-600 text-3xl mb-6 mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-md">
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-white transition-colors">Donasi
+                        </h3>
+                    </a>
+                </div>
+
+                <!-- Button 2: Kolaborasi CSR -->
+                <div class="reveal-element delay-200">
+                    <a href="https://wa.me/6285126724272?text=Halo%20Yayasan%20Yuana%20Bhakti%20Nusantara,%20saya%20tertarik%20untuk%20kolaborasi%20CSR."
+                        class="group block p-8 bg-green-50 hover:bg-green-600 border border-green-100 rounded-3xl transition-all duration-500 hover:-translate-y-2 shadow-sm hover:shadow-2xl">
+                        <div
+                            class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-green-600 text-3xl mb-6 mx-auto group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300 shadow-md">
+                            <i class="fa-solid fa-building-circle-check"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-white transition-colors">
+                            Kolaborasi CSR</h3>
+                        <p class="text-gray-500 group-hover:text-green-50 text-sm transition-colors leading-relaxed">
+                            Sinergi perusahaan untuk menciptakan dampak sosial berkelanjutan bagi negeri.</p>
+                    </a>
+                </div>
+
+                <!-- Button 3: Kolaborasi Program -->
+                <div class="reveal-element delay-300">
+                    <a href="https://wa.me/6285126724272?text=Halo%20Yayasan%20Yuana%20Bhakti%20Nusantara,%20saya%20ingin%20mengajak%20kolaborasi%20program."
+                        class="group block p-8 bg-purple-50 hover:bg-purple-600 border border-purple-100 rounded-3xl transition-all duration-500 hover:-translate-y-2 shadow-sm hover:shadow-2xl">
+                        <div
+                            class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-purple-600 text-3xl mb-6 mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-md">
+                            <i class="fa-solid fa-puzzle-piece"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-white transition-colors">
+                            Kolaborasi Program</h3>
+                        <p class="text-gray-500 group-hover:text-purple-50 text-sm transition-colors leading-relaxed">
+                            Jalin kemitraan strategis dalam pengembangan program inovatif bersama kami.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 pt-16 pb-8 reveal-element">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center mb-4 gap-3">
+                        <img src="asset/LOGO YBN_NO BG.png" alt="Logo YBN" class="h-12 w-auto rounded-md shadow-sm"
+                            onerror="this.src='https://placehold.co/50x50?text=YBN';">
+                        <div>
+                            <span class="block font-bold text-xl text-gray-900 leading-none">Yayasan Yuana Bhakti
+                                Nusantara</span>
+                            <span class="text-sm text-gray-500">Indonesia Youth Movement</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-2">
+                        AHU-0013235.AH.01.12/2025
+                    </p>
+                    <p class="text-gray-600 italic mb-6 font-serif">
+                        "Merajut Asa di Setiap Sudut Nusantara"
+                    </p>
+                </div>
+
+                <!-- Contacts -->
+                <div>
+                    <h4
+                        class="font-bold text-gray-900 mb-4 uppercase tracking-wider text-xs relative after:content-[''] after:block after:w-8 after:h-0.5 after:bg-primary-500 after:mt-1">
+                        Hubungi Kami</h4>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li class="flex items-start gap-2 hover:text-primary-600 transition-colors"><i
+                                class="fa-regular fa-envelope w-5 mt-1"></i> <span
+                                class="break-all">yuanabhaktinusantara@gmail.com / youthmovement.idn@gmail.com</span>
+                        </li>
+                        <li class="flex items-center gap-2 hover:text-primary-600 transition-colors"><i
+                                class="fa-brands fa-whatsapp w-5"></i> +62 851-2672-4272</li>
+                        <li class="flex items-center gap-2 hover:text-primary-600 transition-colors"><i
+                                class="fa-solid fa-location-dot w-5"></i> Indonesia</li>
+                    </ul>
+                </div>
+
+                <!-- Socials -->
+                <div>
+                    <h4
+                        class="font-bold text-gray-900 mb-4 uppercase tracking-wider text-xs relative after:content-[''] after:block after:w-8 after:h-0.5 after:bg-primary-500 after:mt-1">
+                        Social Media</h4>
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/indonesiayouthmovement/"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gradient-to-r hover:from-primary-400 hover:to-primary-600 hover:text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@indonesiayouthmovement"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-black hover:text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"><i
+                                class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.linkedin.com/company/yayasan-yuana-bhakti-nusantara"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-blue-700 hover:text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"><i
+                                class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-400 text-center md:text-left">© 2025 Yayasan Yuana Bhakti Nusantara.</p>
+                <p class="text-sm text-gray-400 mt-2 md:mt-0 group cursor-default">Made with <i
+                        class="fa-solid fa-heart text-custom-red-600 animate-pulse"></i> for Indonesia</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal (Placeholder Logic) -->
+    <div id="modal-backdrop"
+        class="fixed inset-0 bg-gray-900/70 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+        <div id="auth-modal"
+            class="bg-white w-full max-w-md rounded-2xl shadow-2xl transform scale-95 transition-all duration-300 hidden overflow-hidden">
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <h3 class="text-xl font-bold text-gray-900">Bergabung</h3>
+                <button onclick="closeModal()"
+                    class="text-gray-400 hover:text-custom-red-500 transition-colors transform hover:rotate-90 duration-300"><i
+                        class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="p-6 text-center">
+                <div
+                    class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl animate-bounce">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <h4 class="text-lg font-bold text-gray-900 mb-2">Jadi Relawan Sekarang!</h4>
+                <p class="text-gray-600 mb-6">Silakan hubungi kami via WhatsApp untuk pendaftaran relawan terbaru dan
+                    info kegiatan.</p>
+                <a href="https://wa.me/6285126724272"
+                    class="inline-block w-full py-3 bg-green-500 text-white rounded-lg font-bold hover:bg-green-600 transition-all shadow-lg hover:shadow-green-500/30 transform hover:-translate-y-1">Chat
+                    WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scripts for Navbar & Modal
+        const navbar = document.getElementById('navbar');
+        const backdrop = document.getElementById('modal-backdrop');
+        const authModal = document.getElementById('auth-modal');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('glass-nav', 'py-2');
+                navbar.classList.remove('py-4', 'bg-transparent');
+            } else {
+                navbar.classList.remove('glass-nav', 'py-2');
+                navbar.classList.add('py-4', 'bg-transparent');
+            }
+        });
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function openModal() {
+            backdrop.classList.remove('hidden');
+            // Trigger reflow
+            void backdrop.offsetWidth;
+            backdrop.classList.remove('opacity-0');
+            authModal.classList.remove('hidden');
+            setTimeout(() => { authModal.classList.remove('scale-95'); authModal.classList.add('scale-100'); }, 10);
+        }
+
+        function closeModal() {
+            backdrop.classList.add('opacity-0');
+            authModal.classList.remove('scale-100');
+            authModal.classList.add('scale-95');
+            setTimeout(() => { backdrop.classList.add('hidden'); authModal.classList.add('hidden'); }, 300);
+        }
+
+        backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeModal(); });
+
+        // --- NEW INTERACTIVE SCRIPTS ---
+
+        // 1. Scroll Reveal Animation Logic
+        const revealElements = document.querySelectorAll('.reveal-element');
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.15, // Trigger when 15% of element is visible
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 2. Number Counter Animation Logic
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200; // The lower the slower
+
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+
+                    const updateCount = () => {
+                        const count = +counter.innerText;
+                        const inc = target / speed;
+
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count + inc);
+                            setTimeout(updateCount, 20);
+                        } else {
+                            counter.innerText = target + "+"; // Add plus sign at end
+                        }
+                    };
+                    updateCount();
+                    observer.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+    </script>
+</body>
+
+</html>
