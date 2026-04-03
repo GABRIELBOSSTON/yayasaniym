@@ -324,28 +324,24 @@
             <div class="absolute top-0 right-0 w-32 h-32 bg-primary-50 rounded-bl-full opacity-50"></div>
 
             <div class="text-center relative z-10 p-2 hover:bg-gray-50 rounded-xl transition-colors">
-                <div
-                    class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600 mb-1">
-                    49</div>
+                <div class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600 mb-1 counter"
+                    data-target="41">0</div>
                 <div class="text-xs md:text-sm text-gray-500 font-medium uppercase tracking-wide mt-2">Proyek Sosial
                 </div>
             </div>
             <div class="text-center relative z-10 p-2 hover:bg-gray-50 rounded-xl transition-colors">
-                <div
-                    class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600 mb-1">
-                    92</div>
-                <div class="text-xs md:text-sm text-gray-500 font-medium uppercase tracking-wide mt-2">Mitra</div>
-            </div>
-            <div class="text-center relative z-10 p-2 hover:bg-gray-50 rounded-xl transition-colors">
-                <div
-                    class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600 mb-1">
-                    502</div>
+                <div class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600 mb-1 counter"
+                    data-target="424">0</div>
                 <div class="text-xs md:text-sm text-gray-500 font-medium uppercase tracking-wide mt-2">Relawan</div>
             </div>
             <div class="text-center relative z-10 p-2 hover:bg-gray-50 rounded-xl transition-colors">
-                <div
-                    class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600 mb-1">
-                    3.471</div>
+                <div class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600 mb-1 counter"
+                    data-target="79">0</div>
+                <div class="text-xs md:text-sm text-gray-500 font-medium uppercase tracking-wide mt-2">Mitra</div>
+            </div>
+            <div class="text-center relative z-10 p-2 hover:bg-gray-50 rounded-xl transition-colors">
+                <div class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600 mb-1 counter"
+                    data-target="2744">0</div>
                 <div class="text-xs md:text-sm text-gray-500 font-medium uppercase tracking-wide mt-2">Penerima Manfaat
                 </div>
             </div>
@@ -380,6 +376,18 @@
                         Dari Sabang sampai Merauke, IYM terus bergerak. Program kami menjangkau berbagai daerah di
                         Indonesia, menghadirkan perubahan nyata bagi masyarakat yang membutuhkan.
                     </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div
+                            class="bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition-colors">
+                            <div class="text-2xl font-bold text-primary-400 mb-1">15+</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide">Kota & Kabupaten</div>
+                        </div>
+                        <div
+                            class="bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition-colors">
+                            <div class="text-2xl font-bold text-green-400 mb-1">8+</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide">Provinsi</div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Peta Image -->
@@ -387,9 +395,8 @@
                     <!-- Glow effect -->
                     <div class="absolute inset-0 bg-primary-500/20 rounded-3xl blur-2xl scale-105"></div>
                     <div class="relative group">
-                        <img src="asset/peta1.png" alt="Peta Sebaran Program IYM di Indonesia"
+                        <img src="asset/peta.png" alt="Peta Sebaran Program IYM di Indonesia"
                             class="relative z-10 w-full rounded-3xl shadow-2xl shadow-primary-900/50 border border-white/10 group-hover:scale-[1.02] transition-transform duration-500"
-                            style="object-fit: cover; object-position: center 30%; aspect-ratio: 16/8;"
                             onerror="this.src='https://placehold.co/800x500?text=Peta+Sebaran+IYM';">
 
                     </div>
@@ -412,7 +419,7 @@
                         Yayasan <br>Yuana Bhakti Nusantara</h3>
                     <div class="prose prose-lg text-gray-600 text-justify">
                         <p>
-                            Yayasan Yuana Bhakti Nusantara <strong>YBN</strong> merupakan organisasi sosial berbadan
+                            Yayasan Yuana Bhakti Nusantara <strong>YBN</strong>merupakan organisasi sosial berbadan
                             hukum yang menaungi Indonesia Youth Movement (IYM). Kami hadir sebagai wadah inklusif yang
                             terbuka bagi siapa pun yang peduli dan ingin berkontribusi bagi negeri.
                             <br><br>
@@ -535,7 +542,7 @@
                     Menjadi organisasi penggerak perubahan sosial yang menghadirkan akses, fasilitas,
                     keadilan, dan pemberdayaan bagi masyarakat melalui aksi-aksi kolaboratif yang
                     berkualitas, inklusif, dan berkelanjutan, khususnya di bidang pendidikan, kesehatan,
-                    lingkungan, ekonomi kreatif, serta kesetaraan. </p>
+                    lingkungan, ekonomi kreatif, serta kesetaraan gender. </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -693,109 +700,111 @@
                 </div>
                 <!-- Goal Card (Goal 17) -->
                 <div
-                    class="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                    <div class="mb-4 h-24 flex items-center justify-start">
-                        <img src="sa/17.png" alt="SDG 17" class="h-full w-auto object-contain">
+                    class="group bg-sdg-17 p-6 rounded-3xl shadow-lg lg:col-span-2 hover:shadow-2xl transition-all duration-300 flex items-center gap-8">
+                    <div
+                        class="flex w-24 h-24 items-center justify-center text-white text-3xl shrink-0 p-2 bg-white rounded-xl">
+                        <img src="sa/17.png" alt="SDG 17" class="h-full w-full object-contain">
                     </div>
-                    <h4 class="font-bold text-gray-900 uppercase text-sm tracking-tight mb-2 text-left">Kemitraan untuk
-                        Tujuan
-                    </h4>
-                    <p class="text-xs text-gray-500 text-left">Membangun kolaborasi strategis dengan berbagai
-                        pihak untuk mencapai dampak yang maksimal.</p>
+                    <div class="text-left">
+                        <div class="flex items-center gap-2 mb-2">
+                            <!-- Number removed as it's likely in the image, or just cleaner without repetitive number -->
+                            <h4 class="font-bold text-white uppercase text-sm tracking-wider">Kemitraan untuk Tujuan
+                            </h4>
+                        </div>
+                        <p class="text-xs text-white/80 leading-relaxed">Membangun kolaborasi strategis dengan berbagai
+                            pihak untuk mencapai dampak yang maksimal.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Team Structure -->
-    <section class="py-24 bg-gray-50 border-b border-gray-100">
+    <section class="py-20 bg-gray-50 border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-16 font-poppins reveal-element">Meet The Team
-            </h2>
+            <h2 class="text-3xl font-bold text-gray-900 mb-12 font-poppins reveal-element">Struktur Organisasi</h2>
 
-            <div class="reveal-element delay-100">
-                <div class="flex flex-wrap justify-center items-start gap-8 md:gap-14">
-
-                    <!-- Member 1 -->
-                    <div class="flex flex-col items-center group w-64">
-                        <h5
-                            class="text-xs md:text-sm font-bold text-primary-600 uppercase text-center mb-4 min-h-[3em] flex items-center justify-center tracking-wider">
-                            HEAD OF OPERATIONS & PROGRAM</h5>
+            <!-- Management & Operations Team -->
+            <div class="mb-16 reveal-element delay-100">
+                <h3 class="text-xl font-bold text-primary-600 uppercase tracking-widest mb-8">MANAGEMENT & OPERATIONS
+                    TEAM</h3>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <!-- Head of Operations -->
+                    <div
+                        class="bg-gray-50 p-6 rounded-xl w-64 shadow-sm hover:shadow-xl transition-shadow duration-300 group">
                         <div
-                            class="w-full aspect-[3/4] rounded-[2rem] border-[3px] border-primary-500 overflow-hidden mb-5 shadow-lg group-hover:-translate-y-2 group-hover:shadow-primary-500/30 transition-all duration-300">
+                            class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden border-2 border-transparent group-hover:border-primary-500 transition-colors">
                             <img src="asset/Ineu Melia.JPG" alt="Ineu Melia Febrianti"
-                                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform"
                                 onerror="this.src='https://ui-avatars.com/api/?name=Ineu+Melia&background=04A8FF&color=fff';">
                         </div>
-                        <h4
-                            class="font-bold text-gray-900 text-xl tracking-wide text-center group-hover:text-primary-600 transition-colors">
-                            Ineu Melia Febrianti, S.Sos</h4>
+                        <h5
+                            class="text-[10px] font-bold text-primary-600 uppercase tracking-wider mb-2 min-h-[2.5em] flex items-center justify-center">
+                            HEAD OF OPERATIONS & PROGRAM</h5>
+                        <h4 class="font-bold text-gray-900 text-sm">Ineu Melia Febrianti, S.Sos</h4>
                     </div>
 
-                    <!-- Member 2 -->
-                    <div class="flex flex-col items-center group w-64">
-                        <h5
-                            class="text-xs md:text-sm font-bold text-primary-600 uppercase text-center mb-4 min-h-[3em] flex items-center justify-center tracking-wider">
-                            ADMINISTRATION & PARTNERSHIP LEAD</h5>
+                    <!-- Administration & Partnership Lead -->
+                    <div
+                        class="bg-gray-50 p-6 rounded-xl w-64 shadow-sm hover:shadow-xl transition-shadow duration-300 group">
                         <div
-                            class="w-full aspect-[3/4] rounded-[2rem] border-[3px] border-primary-500 overflow-hidden mb-5 shadow-lg group-hover:-translate-y-2 group-hover:shadow-primary-500/30 transition-all duration-300">
+                            class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden border-2 border-transparent group-hover:border-primary-500 transition-colors">
                             <img src="asset/Wahyuning Suci Prabandini.png" alt="Wahyuning Suci"
-                                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform"
                                 onerror="this.src='https://ui-avatars.com/api/?name=Wahyuning+Suci&background=04A8FF&color=fff';">
                         </div>
-                        <h4
-                            class="font-bold text-gray-900 text-xl tracking-wide text-center group-hover:text-primary-600 transition-colors">
-                            Wahyuning Suci, S.I.Kom</h4>
+                        <h5
+                            class="text-[10px] font-bold text-primary-600 uppercase tracking-wider mb-2 min-h-[2.5em] flex items-center justify-center">
+                            ADMINISTRATION & PARTNERSHIP LEAD</h5>
+                        <h4 class="font-bold text-gray-900 text-sm">Wahyuning Suci, S.I.Kom</h4>
                     </div>
 
-                    <!-- Member 3 -->
-                    <div class="flex flex-col items-center group w-64">
-                        <h5
-                            class="text-xs md:text-sm font-bold text-primary-600 uppercase text-center mb-4 min-h-[3em] flex items-center justify-center tracking-wider">
-                            COMMUNITY DEVELOPMENT LEAD</h5>
+                    <!-- Community Development Lead -->
+                    <div
+                        class="bg-gray-50 p-6 rounded-xl w-64 shadow-sm hover:shadow-xl transition-shadow duration-300 group">
                         <div
-                            class="w-full aspect-[3/4] rounded-[2rem] border-[3px] border-primary-500 overflow-hidden mb-5 shadow-lg group-hover:-translate-y-2 group-hover:shadow-primary-500/30 transition-all duration-300">
+                            class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden border-2 border-transparent group-hover:border-primary-500 transition-colors">
                             <img src="asset/Hairullah Rizki.jpg" alt="Hairullah Rizki"
-                                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform"
                                 onerror="this.src='https://ui-avatars.com/api/?name=Hairullah+Rizki&background=04A8FF&color=fff';">
                         </div>
-                        <h4
-                            class="font-bold text-gray-900 text-xl tracking-wide text-center group-hover:text-primary-600 transition-colors">
-                            Hairullah Rizki</h4>
+                        <h5
+                            class="text-[10px] font-bold text-primary-600 uppercase tracking-wider mb-2 min-h-[2.5em] flex items-center justify-center">
+                            COMMUNITY DEVELOPMENT LEAD</h5>
+                        <h4 class="font-bold text-gray-900 text-sm">Hairullah Rizki</h4>
                     </div>
 
-                    <!-- Member 4 -->
-                    <div class="flex flex-col items-center group w-64">
-                        <h5
-                            class="text-xs md:text-sm font-bold text-primary-600 uppercase text-center mb-4 min-h-[3em] flex items-center justify-center tracking-wider">
-                            DIGITAL CONTENT SPECIALIST</h5>
+
+
+                    <!-- Digital Content Specialist -->
+                    <div
+                        class="bg-gray-50 p-6 rounded-xl w-64 shadow-sm hover:shadow-xl transition-shadow duration-300 group">
                         <div
-                            class="w-full aspect-[3/4] rounded-[2rem] border-[3px] border-primary-500 overflow-hidden mb-5 shadow-lg group-hover:-translate-y-2 group-hover:shadow-primary-500/30 transition-all duration-300">
+                            class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden border-2 border-transparent group-hover:border-primary-500 transition-colors">
                             <img src="asset/kadian.png" alt="Dian Rachmawati"
-                                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform"
                                 onerror="this.src='https://ui-avatars.com/api/?name=Dian+Rachmawati&background=04A8FF&color=fff';">
                         </div>
-                        <h4
-                            class="font-bold text-gray-900 text-xl tracking-wide text-center group-hover:text-primary-600 transition-colors">
-                            Dian Rachmawati, S.Hum</h4>
+                        <h5
+                            class="text-[10px] font-bold text-primary-600 uppercase tracking-wider mb-2 min-h-[2.5em] flex items-center justify-center">
+                            DIGITAL CONTENT SPECIALIST</h5>
+                        <h4 class="font-bold text-gray-900 text-sm">Dian Rachmawati, S.Hum</h4>
                     </div>
 
-                    <!-- Member 5 -->
-                    <div class="flex flex-col items-center group w-64">
-                        <h5
-                            class="text-xs md:text-sm font-bold text-primary-600 uppercase text-center mb-4 min-h-[3em] flex items-center justify-center tracking-wider">
-                            GRAPHIC DESIGNER</h5>
+                    <!-- Graphic Designer -->
+                    <div
+                        class="bg-gray-50 p-6 rounded-xl w-64 shadow-sm hover:shadow-xl transition-shadow duration-300 group">
                         <div
-                            class="w-full aspect-[3/4] rounded-[2rem] border-[3px] border-primary-500 overflow-hidden mb-5 shadow-lg group-hover:-translate-y-2 group-hover:shadow-primary-500/30 transition-all duration-300">
+                            class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden border-2 border-transparent group-hover:border-primary-500 transition-colors">
                             <img src="asset/kamukhlas.png" alt="Mukhlas Ibnu Majd"
-                                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform"
                                 onerror="this.src='https://ui-avatars.com/api/?name=Mukhlas+Ibnu&background=04A8FF&color=fff';">
                         </div>
-                        <h4
-                            class="font-bold text-gray-900 text-xl tracking-wide text-center group-hover:text-primary-600 transition-colors">
-                            Mukhlas Ibnu Majd</h4>
+                        <h5
+                            class="text-[10px] font-bold text-primary-600 uppercase tracking-wider mb-2 min-h-[2.5em] flex items-center justify-center">
+                            GRAPHIC DESIGNER</h5>
+                        <h4 class="font-bold text-gray-900 text-sm">Mukhlas Ibnu Majd</h4>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -820,12 +829,16 @@
                             onerror="this.src='https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2026&auto=format&fit=crop';">
                     </div>
                     <div class="md:w-1/2">
+                        <div
+                            class="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-bold rounded-full mb-3">
+                            Desa Binaan</div>
                         <h3
                             class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary-600 transition-colors">
                             Rumah Asa Yuana</h3>
                         <p class="text-gray-600 leading-relaxed mb-6">
-                            Program berkelanjutan yang hadir langsung di tengah masyarakat, dengan fokus pada desa,
-                            kampung, atau kelompok yang menjadi binaan Yayasan Yuana Bhakti Nusantara.
+                            Program berkelanjutan di desa/kampung binaan. Meliputi pendampingan UMKM (produksi hingga
+                            pemasaran), penanaman pohon dan monitoring lingkungan, cek kesehatan rutin, serta kegiatan
+                            belajar mengajar terstruktur untuk masyarakat.
                         </p>
                         <button
                             class="text-primary-600 font-bold hover:underline group-hover:translate-x-2 transition-transform inline-flex items-center gap-2">Selengkapnya
@@ -843,13 +856,16 @@
                             onerror="this.src='https://images.unsplash.com/photo-1599582236894-067645166b0a?q=80&w=2069&auto=format&fit=crop';">
                     </div>
                     <div class="md:w-1/2">
+                        <div
+                            class="inline-block px-3 py-1 bg-custom-red-100 text-custom-red-700 text-xs font-bold rounded-full mb-3">
+                            Daerah 3T</div>
                         <h3
                             class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-custom-red-600 transition-colors">
                             Bhakti Nusantara</h3>
                         <p class="text-gray-600 leading-relaxed mb-6">
-                            Bhakti Nusantara merupakan program pengabdian sekaligus pemberdayaan masyarakat yang
-                            berfokus pada peningkatan kualitas hidup di beberapa bidang
-                            utama, yaitu pendidikan, kesehatan, ekonomi, dan lingkungan.
+                            Pengabdian dan pemberdayaan masyarakat di wilayah 3T (Terluar, Terpencil, Tertinggal). Fokus
+                            pada peningkatan kualitas hidup di bidang pendidikan, kesehatan, ekonomi kreatif, dan
+                            lingkungan.
                         </p>
                         <button
                             class="text-custom-red-600 font-bold hover:underline group-hover:translate-x-2 transition-transform inline-flex items-center gap-2">Selengkapnya
@@ -867,14 +883,10 @@
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-3">Bhakti Sapa</h3>
                         <p class="text-gray-600 text-sm leading-relaxed">
-                            Bhakti Sapa merupakan salah satu program sosial rutin yang
-                            dilaksanakan setiap bulan atau pada hari-hari peringatan
-                            tertentu. Program ini menyasar lembaga sosial atau kelompok
-                            tertentu, seperti panti, komunitas marginal, atau masyarakat
-                            terdampak bencana.
+                            Aksi sosial rutin bulanan atau insidental (bencana). Menyasar panti asuhan, komunitas
+                            marginal, dan masyarakat terdampak bencana dengan donasi dan layanan edukatif/kesehatan.
                         </p>
-                        <img src="asset/sapa.jpg" alt="Bhakti Sapa"
-                            class="w-full h-auto object-contain rounded-xl mt-4">
+                        <img src="asset/sapa.jpg" alt="Bhakti Sapa" class="w-full h-48 object-cover rounded-xl mt-4">
                     </div>
                     <div
                         class="reveal-element delay-200 bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
@@ -884,13 +896,10 @@
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-3">Ngobrol Bermanfaat (Ngobat)</h3>
                         <p class="text-gray-600 text-sm leading-relaxed">
-                            Selain menjalankan program secara langsung di lapangan,
-                            kami juga menghadirkan ruang belajar dan berbagi secara
-                            online yang dapat diikuti siapa saja, dari mana saja agar dapat tetap terhubung, belajar,
-                            dan
-                            berkontribusi tanpa batas ruang dan jarak.
+                            Ruang belajar dan berbagi online. Mendalami topik pengembangan diri dan isu sosial,
+                            menjembatani anak muda dari mana saja untuk terhubung dan berkontribusi.
                         </p>
-                        <img src="asset/ngobat.jpg" alt="Ngobat" class="w-full h-auto object-contain rounded-xl mt-4">
+                        <img src="asset/ngobat.jpg" alt="Ngobat" class="w-full h-48 object-cover rounded-xl mt-4">
                     </div>
                 </div>
             </div>
@@ -1162,31 +1171,21 @@
             <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-900 to-transparent z-10"></div>
             <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-900 to-transparent z-10"></div>
             <div class="animate-marquee whitespace-nowrap flex gap-8 text-gray-300 font-medium text-lg">
-                <span>Medan</span> <span class="text-primary-500">•</span>
-                <span>Agam</span> <span class="text-primary-500">•</span>
-                <span>Natuna</span> <span class="text-primary-500">•</span>
-                <span>Bintan</span> <span class="text-primary-500">•</span>
-                <span>Bangka Belitung</span> <span class="text-primary-500">•</span>
-                <span>Jakarta</span> <span class="text-primary-500">•</span>
-                <span>Depok</span> <span class="text-primary-500">•</span>
-                <span>Bekasi</span> <span class="text-primary-500">•</span>
-                <span>Bandung</span> <span class="text-primary-500">•</span>
-                <span>Cianjur</span> <span class="text-primary-500">•</span>
-                <span>Ciamis</span> <span class="text-primary-500">•</span>
                 <span>Pangandaran</span> <span class="text-primary-500">•</span>
-                <span>Jepara</span> <span class="text-primary-500">•</span>
-                <span>Yogyakarta</span> <span class="text-primary-500">•</span>
-                <span>Malang</span> <span class="text-primary-500">•</span>
-                <span>Banyuwangi</span> <span class="text-primary-500">•</span>
+                <span>Pulau Sabira</span> <span class="text-primary-500">•</span>
+                <span>Dompu (NTB)</span> <span class="text-primary-500">•</span>
+                <span>Bintan (Kepri)</span> <span class="text-primary-500">•</span>
                 <span>Bali</span> <span class="text-primary-500">•</span>
-                <span>Sumbawa</span> <span class="text-primary-500">•</span>
-                <span>Dompu</span> <span class="text-primary-500">•</span>
-                <span>Bima</span> <span class="text-primary-500">•</span>
-                <span>Medan</span> <span class="text-primary-500">•</span>
-                <span>Agam</span> <span class="text-primary-500">•</span>
                 <span>Natuna</span> <span class="text-primary-500">•</span>
-                <span>Bintan</span> <span class="text-primary-500">•</span>
-                <span>Bangka Belitung</span>
+                <span>Bima</span> <span class="text-primary-500">•</span>
+                <span>Bangka Belitung</span> <span class="text-primary-500">•</span>
+                <span>Karimunjawa</span> <span class="text-primary-500">•</span>
+                <span>Sumbawa</span> <span class="text-primary-500">•</span>
+                <span>Jabodetabek</span> <span class="text-primary-500">•</span>
+                <span>Pangandaran</span> <span class="text-primary-500">•</span>
+                <span>Pulau Sabira</span> <span class="text-primary-500">•</span>
+                <span>Dompu (NTB)</span> <span class="text-primary-500">•</span>
+                <span>Bintan (Kepri)</span>
             </div>
         </div>
     </section>
