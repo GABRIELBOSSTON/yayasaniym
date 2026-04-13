@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #e6f7ff;
+  --color-primary-100: #b3e0ff;
+  --color-primary-400: #04A8FF;
+  --color-primary-500: #038c85;
+  --color-primary-600: #036C65;
+  --color-primary-700: #025650;
+  --color-primary-900: #013f3a;
+
+  --color-custom-red-100: #ffe1e1;
+  --color-custom-red-400: #E3080B;
+  --color-custom-red-500: #b3120f;
+  --color-custom-red-600: #831C13;
+  --color-custom-red-700: #6a170f;
+
+  --color-brand-yellow: #FCD34D;
+  --color-brand-green: #5AD666;
+  --color-brand-red: #E3080B;
+
+  --color-sdg-2: #E5243B;
+  --color-sdg-3: #4C9F38;
+  --color-sdg-4: #C5192D;
+  --color-sdg-5: #FF3A21;
+  --color-sdg-8: #A21942;
+  --color-sdg-13: #3F7E44;
+  --color-sdg-17: #19486A;
+
+  --font-sans: var(--font-inter), sans-serif;
+  --font-serif: var(--font-merriweather), serif;
+  --font-poppins: var(--font-poppins), sans-serif;
+
+  --background-image-gradient-primary: linear-gradient(to right, #04A8FF, #036C65);
+
+  --animate-blob: blob 7s infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #04A8FF;
+    border-radius: 4px;
+    background-image: linear-gradient(to bottom, #04A8FF, #036C65);
+}
+
+.glass-nav {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Text Stroke Effect */
+.text-outline-white {
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+    transition: all 0.3s ease;
+}
+
+.text-outline-white:hover {
+    color: white;
+    -webkit-text-stroke: 0px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+/* Marquee Animation */
+.animate-marquee {
+    animation: marquee 35s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Animation Utilities (Scroll Reveal) */
+.reveal-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal-element.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-100 {
+    transition-delay: 0.1s;
+}
+
+.delay-200 {
+    transition-delay: 0.2s;
+}
+
+.delay-300 {
+    transition-delay: 0.3s;
+}
+
+/* Hero Image Zoom Animation */
+.hero-bg-anim {
+    animation: slowZoom 20s infinite alternate;
+}
+
+@keyframes slowZoom {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+/* Hide Scrollbar Utility */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+body {
+    @apply font-sans text-gray-700 antialiased bg-gray-50 overflow-x-hidden;
+}
